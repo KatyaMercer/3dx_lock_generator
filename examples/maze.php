@@ -9,9 +9,9 @@ include '../core/SvLoader.php';
 $sfApp = new SvLoader();
 $scene = new SvScene();
 
-$scene->setOceanlevel(-10);
-$scene->setRespawn(-20,0,-20);
-$scene->setWeather(SvWeathers::NIGHT);
+//$scene->setOceanlevel(-10);
+//$scene->setRespawn(-20,0,-20);
+//$scene->setWeather(SvWeathers::NIGHT);
 
 
 $floor = new SvObject();

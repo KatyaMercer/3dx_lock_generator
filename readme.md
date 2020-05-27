@@ -1,3 +1,13 @@
+<RU>
+Сие поделие позволяет генерировать карты по заданному алгоритму на языке php
+Примеры можно посмотреть в папке examples, а чуть выше описание что и как делать.
+Нужно скачать последнюю версию отсюда https://www.php.net/downloads.php
+И распаковать в папку php
+Запускать из консоли в папке examples php maze.php например
+Кто в тебе разберется в более удобных для себя настройках.
+Потом загружаешь карту в игру 
+A еще в папке example_maps примеры сгенерированных карт.
+<EN>
 Tool for generate
 
 1) For beginners
@@ -32,4 +42,8 @@ $floor->setXyz(0, -0.1, -100); // at coordinates
 $floor->setWidth(100, 0.2, 150); //with width
 $floor->setMaterial(SvMaterials::GRASS_1); // texture grass
 $floor->setType(SvTypes::BOX); // box type
+
 $scene->addObject($floor); // add to scene
+$scene->setOceanlevel(-10); // ocean level
+$scene->setRespawn(-20,0,-20); //respawn coords
+$scene->setWeather(SvWeathers::NIGHT); // weather
