@@ -2,11 +2,17 @@
 use \KatyaMercer\SvLoader;
 use \KatyaMercer\SvScene;
 use \KatyaMercer\SvObject;
-use KatyaMercer\SvMaterials;
-use KatyaMercer\SvTypes;
+use \KatyaMercer\SvMaterials;
+use \KatyaMercer\SvTypes;
+use \KatyaMercer\SvWeathers;
 include '../core/SvLoader.php';
 $sfApp = new SvLoader();
 $scene = new SvScene();
+
+$scene->setOceanlevel(-10);
+$scene->setRespawn(-20,0,-20);
+$scene->setWeather(SvWeathers::NIGHT);
+
 
 $floor = new SvObject();
 $floor->setXyz(0, -0.1, -100);
@@ -54,28 +60,10 @@ $maze->setSize(15);
 $maze->generate();
 $maze->drawOnScene($scene);
 
-$bol = new companies\KatyaMercer\Boloto();
-$bol->setPos(0,0,50);
-$bol->setSize(500);
-$bol->generate(1000, 500, 500, 500);
-$bol->drawOnScene($scene);
-
 $house = new \companies\KatyaMercer\SimpleHouse();
 $house->setPos(50,0,0);
 $house->generate();
 $house->drawOnScene($scene);
 
-
-$bol = new companies\KatyaMercer\Wood();
-$bol->setPos(0,0,-75);
-$bol->setSize(40);
-$bol->generate(150);
-$bol->drawOnScene($scene);
-
-$bol = new companies\KatyaMercer\Wood();
-$bol->setPos(-40,0,-75);
-$bol->setSize(40);
-$bol->generate(150);
-$bol->drawOnScene($scene);
 
 file_put_contents('myLo.world', $scene->dump());
