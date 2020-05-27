@@ -18,6 +18,7 @@ class SvLoader {
         require_once DIR_SV . '/SvTypes.php';
         require_once DIR_SV . '/SvScene.php';
         require_once DIR_SV . '/SvObject.php';
+        require_once DIR_SV . '/SvWeathers.php';
         
         foreach (glob(DIR_SV . "/companies/*/*.php") as $filename)
         {

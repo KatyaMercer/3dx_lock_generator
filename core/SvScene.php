@@ -37,4 +37,51 @@ class SvScene
     {
         return json_encode($this->scene);
     }
+
+    /**
+     * set weather
+     * @param string $weather
+     */
+    public function setWeather(string $weather)
+    {
+        $this->scene->weather = $weather;
+    }
+
+    /**
+     * Respawn coords
+     *
+     * @param $x
+     * @param $y
+     * @param $z
+     * @param int $radius do not know
+     */
+    public function setRespawn($x, $y, $z, $radius = 0)
+    {
+        $this->scene->respawn->p = [$x, $y, $z];
+        $this->scene->respawn->r = $radius;
+    }
+
+    /**
+     * Do not know what this
+     *
+     * @param $a
+     * @param $b
+     * @param $c
+     * @param $d
+     * @param $e
+     */
+    public function setAmbient($a,$b,$c,$d,$e)
+    {
+        $this->scene->ambient = [$a,$b,$c,$d,$e];
+    }
+
+    /**
+     * set oceanlevel
+     *
+     * @param int $level
+     */
+    public function setOceanlevel($level = 1)
+    {
+        $this->scene->oceanlevel = $level;
+    }
 }
