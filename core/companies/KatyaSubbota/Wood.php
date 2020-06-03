@@ -11,13 +11,13 @@ class Wood extends AbstractLocation{
         $positionCenterZ = $this->positionCenterZ;
         $size = $this->size;
         $array = [
-            SvTypes::GRASS1,
-            SvTypes::GRASS1,
-            SvTypes::GRASS1,
-            SvTypes::GRASS1,
-            SvTypes::GRASS1,
+            SvTypes::TREE1,
             SvTypes::TREE2,
             SvTypes::TREE3,
+            SvTypes::TREE4,
+            SvTypes::TREE5,
+            SvTypes::TREE6,
+            SvTypes::TREE7,
             SvTypes::BUSH1,
             SvTypes::BUSH1,
             SvTypes::BUSH2,
@@ -26,8 +26,18 @@ class Wood extends AbstractLocation{
             $object = new SvObject();
             $object->setType($array[array_rand($array)]);
             $object->setRotate(270, rand(1,360), 0);
-            $object->setWidth(1, rand(1,2), 1);
-            $object->setXyz($positionCenterX+rand(1, $size), $positionCenterY, $positionCenterZ+rand(1, $size));
+            $width = rand(1,2);
+            $object->setWidth($width, $width, rand(0.5,2));
+            $x = $positionCenterX+rand(1, $size);
+            $y = $positionCenterZ+rand(1, $size);
+            $object->setXyz($x, $positionCenterY, $y);
+            $this->objects[] = $object;
+
+            $object = new SvObject();
+            $object->setType(SvTypes::GRASS1);
+            $object->setRotate(270, rand(1,360), 0);
+            $object->setWidth(rand(2,10), rand(2,10), rand(1,5));
+            $object->setXyz($x, $positionCenterY, $y);
             $this->objects[] = $object;
         }
     }

@@ -63,6 +63,12 @@ class SvObject
         $this->object->m = $material;
     }
 
+
+    public function delMaterial()
+    {
+        unset($this->object->m);
+    }
+
     /**
      * look SvType (if it is sofa or box or bed?)
      * @param $type
@@ -81,6 +87,10 @@ class SvObject
     {
         return $this->object;
 
+    }
+    public function setColor($r, $g, $b)
+    {
+        $this->object->c = [$r, $g, $b];
     }
 
     /**
