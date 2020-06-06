@@ -29,6 +29,11 @@ class SvScene
             $this->scene->objects[] = $object->getObject();
     }
 
+    public function addGroup(SvGroup $group)
+    {
+        $this->scene->objects[] = $group->getGroup();
+    }
+
     /**
      * prepare json
      * @return false|string
