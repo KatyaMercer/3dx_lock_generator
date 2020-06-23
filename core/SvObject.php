@@ -38,7 +38,7 @@ class SvObject
      */
     public function setWidth($x, $y, $z)
     {
-        $this->object->s = [$x, $y, $z];
+        $this->object->s = [round($x,2), round($y,2), round($z,2)];
     }
 
     /**
@@ -50,7 +50,7 @@ class SvObject
      */
     public function setRotate($x, $y, $z)
     {
-        $this->object->r = [$x, $y, $z];
+        $this->object->r = [round($x,2), round($y,2), round($z,2)];
     }
 
     /**
@@ -90,7 +90,7 @@ class SvObject
     }
     public function setColor($r, $g, $b)
     {
-        $this->object->c = [$r, $g, $b];
+        $this->object->c = [round($r,2), round($g,2), round($b,2)];
     }
 
     /**

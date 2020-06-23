@@ -95,15 +95,18 @@ class SimpleHouse extends AbstractLocation{
 
         if ($light) {
             $object = new SvObject();
-            $object->setMaterial($stenaMaterial);
+//            $object->setMaterial($stenaMaterial);
             $object->setType(SvTypes::LIGHTP);
             $object->setXyz($positionCenterX+5, $positionCenterZ+5, $positionCenterY+10);
             $object->setRotate(0,0,180);
-            $object->setWidth(2, 2, 2);
+            $object->setWidth(1.5, 1.5, 1.5);
+//            $object->setColor(0.858947456,0.7659354,0.254971772);
+//            $object->setColor(0.858947456,0.7659354,0.254971772);
+            $object->setColor(0.55,0.76,0.75);
             $this->objects[] = $object;
 
             $object = new SvObject();
-            $object->setMaterial($stenaMaterial);
+//            $object->setMaterial($stenaMaterial);
             $object->setType(SvTypes::LUSTER);
             $object->setXyz($positionCenterX+5, $positionCenterZ+8, $positionCenterY+10);
             $object->setRotate(270,0,180);

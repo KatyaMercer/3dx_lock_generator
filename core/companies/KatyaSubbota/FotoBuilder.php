@@ -14,6 +14,7 @@ class FotoBuilder extends AbstractLocation
         $resource = imagecreatefrombmp($image);
         $width = imagesx($resource);
         $height = imagesy($resource);
+        $coef=0.01;
 
         for($x = 0; $x < $width; $x+=1) {
             for($y = 0; $y < $height; $y+=1) {
@@ -25,11 +26,11 @@ class FotoBuilder extends AbstractLocation
                 $b = $colors['blue'];
                 $object = new SvObject();
                 $object->setType(SvTypes::BOX);
-                $object->setWidth(1,1,1);
+                $object->setWidth($coef,$coef,$coef);
 //        $object->setMaterial(SvMaterials::CONCRETE_1);
                 $object->delMaterial();
-                $object->setColor($r/100, $g/100, $b/100);
-                $object->setXyz(50-1*($width-$x),1*($height-$y),300);
+                $object->setColor(round($r/256,2), round($g/256, 2), round($b/256,2) );
+                $object->setXyz(50-$coef*($width-$x),$coef*($height-$y),300);
                 $this->objects[] = $object;
             }
         }
