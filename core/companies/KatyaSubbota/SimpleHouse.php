@@ -4,16 +4,18 @@ use \KatyaMercer\SvMaterials;
 use \KatyaMercer\SvObject;
 use \KatyaMercer\SvTypes;
 class SimpleHouse extends AbstractLocation{
-     
-    public function generate($light = false) {
+
+    public function korobka()
+    {
         $positionCenterX = $this->positionCenterX;
         $positionCenterY = $this->positionCenterY;
         $positionCenterZ = $this->positionCenterZ;
-        $stenaMaterial = SvMaterials::TILES_1;
-        
+        $stenaMaterial = SvMaterials::TILES_2;
+
         $object = new SvObject();
         $object->setMaterial($stenaMaterial);
         $object->setType(SvTypes::BOX);
+        $object->setColor(0,0.9,0.3);;
         $object->setXyz($positionCenterX, $positionCenterZ+0.05, $positionCenterY);
         $object->setWidth(25, 0.05, 25);
         $this->objects[] = $object;
@@ -33,6 +35,57 @@ class SimpleHouse extends AbstractLocation{
         $object->setXyz($positionCenterX, $positionCenterZ+10, $positionCenterY);
         $object->setWidth(25, 0.05, 25);
         $this->objects[] = $object;
+    }
+
+    public function theatre()
+    {
+        $positionCenterX = $this->positionCenterX;
+        $positionCenterY = $this->positionCenterY;
+        $positionCenterZ = $this->positionCenterZ;
+
+        $object = new SvObject();
+        $object->setType(SvTypes::TV_1);
+        $object->setXyz($positionCenterX-1, $positionCenterZ+3, $positionCenterY+0.1);
+        $object->setRotate(270, 270,0);
+        $object->setWidth(1, 1, 1);
+        $this->objects[] = $object;
+
+        for ($dy = 10; $dy < 20; $dy+=3) {
+            for($dx = -4;$dx < 4; $dx+=2)
+            {
+                $object = new SvObject();
+                $object->setType(SvTypes::FUTON_SOFA);
+                $object->setXyz($positionCenterX+$dx, $positionCenterZ+0.1, $positionCenterY+$dy);
+                $object->setRotate(270,90,0);
+                $object->setWidth(1, 1, 1);
+                $this->objects[] = $object;
+            }
+        }
+
+        $object = new SvObject();
+        $object->setType(SvTypes::VEDRO);
+        $object->setXyz($positionCenterX+10, $positionCenterZ+0.1, $positionCenterY+15);
+        $object->setRotate(270,180,0);
+        $object->setWidth(1, 1, 1);
+        $this->objects[] = $object;
+
+        $object = new SvObject();
+        $object->setType(SvTypes::MAFON);
+        $object->setXyz($positionCenterX+10, $positionCenterZ+0.1, $positionCenterY+13);
+        $object->setRotate(270,180,0);
+        $object->setWidth(1, 1, 1);
+        $this->objects[] = $object;
+
+
+    }
+     
+    public function generate($light = false) {
+        $positionCenterX = $this->positionCenterX;
+        $positionCenterY = $this->positionCenterY;
+        $positionCenterZ = $this->positionCenterZ;
+        $stenaMaterial = SvMaterials::TILES_1;
+        
+        $this->korobka();
         
         
         $object = new SvObject();

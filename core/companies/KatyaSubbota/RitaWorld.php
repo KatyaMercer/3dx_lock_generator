@@ -191,6 +191,13 @@ class RitaWorld extends AbstractLocation{
         $bed->setType(SvTypes::CHAIR_GIOVANNETTI_RED);
         $this->objects[] = $bed;
 
+        $object = new SvObject();
+        $object->setType(SvTypes::VEDRO);
+        $object->setXyz($positionCenterX+12, $positionCenterZ+4, $positionCenterY+2);
+        $object->setRotate(270,180,0);
+        $object->setWidth(1, 1, 1);
+        $this->objects[] = $object;
+
 
         $this->generateTree($positionCenterX+14,$positionCenterY+4,$positionCenterZ+$leng/4+7, SvTypes::TREE3);
         $this->generateTree($positionCenterX-14,$positionCenterY+4,$positionCenterZ+$leng/4+7, SvTypes::TREE7);
