@@ -15,9 +15,9 @@ class LineMountain extends AbstractLocation{
     {
         $mounts = [
             SvTypes::TERRAIN_GRASS,
-            SvTypes::TERRAIN_DIRT,
-            SvTypes::TERRAIN_SAND,
-            SvTypes::TERRAIN_SNOW,
+//            SvTypes::TERRAIN_DIRT,
+//            SvTypes::TERRAIN_SAND,
+//            SvTypes::TERRAIN_SNOW,
         ];
         $deltaX = (-$fromXYZ['x'] + $toXYZ['x'])/$this->size;
         $deltaY = (-$fromXYZ['y'] + $toXYZ['y'])/$this->size;
@@ -33,7 +33,7 @@ class LineMountain extends AbstractLocation{
 
             $object = new SvObject();
             $object->setXyz($x, $y, $z);
-            $object->setWidth(rand(1,2), rand(1,2), rand(3,6));
+            $object->setWidth(rand(1,2), rand(1,2), rand(20,30)/10);
             $object->setRotate(270,0,0);
             $object->delMaterial();
             $object->setType($mounts[array_rand($mounts)]);

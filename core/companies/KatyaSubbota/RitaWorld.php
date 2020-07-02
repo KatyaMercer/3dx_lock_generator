@@ -193,7 +193,7 @@ class RitaWorld extends AbstractLocation{
 
         $object = new SvObject();
         $object->setType(SvTypes::VEDRO);
-        $object->setXyz($positionCenterX+12, $positionCenterZ+4, $positionCenterY+2);
+        $object->setXyz($positionCenterX+12, $positionCenterZ+4, $positionCenterY+$leng/4+2);
         $object->setRotate(270,180,0);
         $object->setWidth(1, 1, 1);
         $this->objects[] = $object;

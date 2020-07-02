@@ -10,16 +10,31 @@ class SimpleHouse extends AbstractLocation{
         $positionCenterX = $this->positionCenterX;
         $positionCenterY = $this->positionCenterY;
         $positionCenterZ = $this->positionCenterZ;
-        $stenaMaterial = SvMaterials::TILES_2;
+        $stenaMaterial = SvMaterials::WOOD_7;
+
+//        $ww = new WoodWall();
+//        $this->objects = array_merge($this->objects, $ww->fromTo($positionCenterX,$positionCenterZ+10+0.05, $positionCenterY,100,0.25,25,
+//                ['x' => 0, 'y' => 0, 'z' => 0]));
+//        $this->objects = array_merge($this->objects, $ww->fromTo($positionCenterX,$positionCenterZ+0.05, $positionCenterY,100,0.25,10,
+//            ['x' => 270, 'y' => 0, 'z' => 0]));
+//        $this->objects = array_merge($this->objects, $ww->fromTo($positionCenterX,$positionCenterZ+0.05, $positionCenterY+25,100,0.25,10,
+//            ['x' => 270, 'y' => 0, 'z' => 0]));
+//        $this->objects = array_merge($this->objects, $ww->fromToDown($positionCenterX+12.5,$positionCenterZ+0.05, $positionCenterY-15,100,0.25,10,
+//            ['x' => 270, 'y' => 0, 'z' => 0]));
+
+//        $this->objects = $this->objects + $ww->fromToZ($positionCenterX,$positionCenterZ+30+0.05, $positionCenterY,10,1,25,
+//                ['x' => 0, 'y' => 270, 'z' => 0]);
 
         $object = new SvObject();
-        $object->setMaterial($stenaMaterial);
+        $object->setMaterial(SvMaterials::STONES_10);
         $object->setType(SvTypes::BOX);
-        $object->setColor(0,0.9,0.3);;
+        $object->setColor(0.19,0.68,0.34);
         $object->setXyz($positionCenterX, $positionCenterZ+0.05, $positionCenterY);
         $object->setWidth(25, 0.05, 25);
         $this->objects[] = $object;
         $object = clone $object;
+        $object->setMaterial($stenaMaterial);
+        $object->setColor(0.99,0.88,1);
         $object->setXyz($positionCenterX, $positionCenterZ+5, $positionCenterY);
         $object->setWidth(25, 10, 0.05);
         $this->objects[] = $object;

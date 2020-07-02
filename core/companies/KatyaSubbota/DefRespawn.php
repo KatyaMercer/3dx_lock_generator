@@ -21,12 +21,12 @@ class DefRespawn extends AbstractLocation{
     public function generate($material = SvMaterials::GRASS_1)
     {
 
-        $floor = new SvObject();
-        $floor->setXyz($this->positionCenterX, $this->positionCenterY, $this->positionCenterZ);
-        $floor->setWidth($this->size, 0.2, $this->size);
-        $floor->setMaterial($material);
-        $floor->setType(SvTypes::BOX);
-        $this->objects[] = $floor;
+        $floor = new SvObject(); //создаю объект
+        $floor->setXyz($this->positionCenterX, $this->positionCenterY, $this->positionCenterZ); // ставлю ему координаты из переменной
+        $floor->setWidth($this->size, 0.2, $this->size);//ставлю ему ширину по оси х,у,z
+        $floor->setMaterial($material);//выставляю материал, в данном случае это трава
+        $floor->setType(SvTypes::BOX);//тип объекта - паралелепиед.
+        $this->objects[] = $floor;// добавляю его в список объектов
 
         $floor = new SvObject();
         $floor->setXyz($this->positionCenterX, $this->positionCenterY, $this->positionCenterZ);
