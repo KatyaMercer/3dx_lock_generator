@@ -5,28 +5,14 @@ use \KatyaMercer\SvObject;
 use \KatyaMercer\SvTypes;
 class SimpleHouse extends AbstractLocation{
 
-    public function korobka()
+    public function korobka($stenaMaterial = SvMaterials::WOOD_7, $florMaterial = SvMaterials::STONES_10)
     {
         $positionCenterX = $this->positionCenterX;
         $positionCenterY = $this->positionCenterY;
         $positionCenterZ = $this->positionCenterZ;
-        $stenaMaterial = SvMaterials::WOOD_7;
-
-//        $ww = new WoodWall();
-//        $this->objects = array_merge($this->objects, $ww->fromTo($positionCenterX,$positionCenterZ+10+0.05, $positionCenterY,100,0.25,25,
-//                ['x' => 0, 'y' => 0, 'z' => 0]));
-//        $this->objects = array_merge($this->objects, $ww->fromTo($positionCenterX,$positionCenterZ+0.05, $positionCenterY,100,0.25,10,
-//            ['x' => 270, 'y' => 0, 'z' => 0]));
-//        $this->objects = array_merge($this->objects, $ww->fromTo($positionCenterX,$positionCenterZ+0.05, $positionCenterY+25,100,0.25,10,
-//            ['x' => 270, 'y' => 0, 'z' => 0]));
-//        $this->objects = array_merge($this->objects, $ww->fromToDown($positionCenterX+12.5,$positionCenterZ+0.05, $positionCenterY-15,100,0.25,10,
-//            ['x' => 270, 'y' => 0, 'z' => 0]));
-
-//        $this->objects = $this->objects + $ww->fromToZ($positionCenterX,$positionCenterZ+30+0.05, $positionCenterY,10,1,25,
-//                ['x' => 0, 'y' => 270, 'z' => 0]);
 
         $object = new SvObject();
-        $object->setMaterial(SvMaterials::STONES_10);
+        $object->setMaterial($florMaterial);
         $object->setType(SvTypes::BOX);
         $object->setColor(0.19,0.68,0.34);
         $object->setXyz($positionCenterX, $positionCenterZ+0.05, $positionCenterY);
@@ -93,18 +79,35 @@ class SimpleHouse extends AbstractLocation{
 
 
     }
-     
-    public function generate($light = false) {
+
+    public function setLight($r = 0.55, $g = 0.76, $b = 0.75)
+    {
         $positionCenterX = $this->positionCenterX;
         $positionCenterY = $this->positionCenterY;
         $positionCenterZ = $this->positionCenterZ;
-        $stenaMaterial = SvMaterials::TILES_1;
-        
-        $this->korobka();
-        
+
+        $object = new SvObject();
+        $object->setType(SvTypes::LIGHTP);
+        $object->setXyz($positionCenterX+5, $positionCenterZ+5, $positionCenterY+10);
+        $object->setRotate(0,0,180);
+        $object->setWidth(1.5, 1.5, 1.5);
+        $object->setColor($r,$g,$b);
+        $this->objects[] = $object;
+
+        $object = new SvObject();
+        $object->setType(SvTypes::LUSTER);
+        $object->setXyz($positionCenterX+5, $positionCenterZ+8, $positionCenterY+10);
+        $object->setRotate(270,0,180);
+        $object->setWidth(1, 1, 1);
+        $this->objects[] = $object;
+    }
+     
+    public function defaultRoom() {
+        $positionCenterX = $this->positionCenterX;
+        $positionCenterY = $this->positionCenterY;
+        $positionCenterZ = $this->positionCenterZ;
         
         $object = new SvObject();
-        $object->setMaterial($stenaMaterial);
         $object->setType(SvTypes::BED6);
         $object->setXyz($positionCenterX+5, $positionCenterZ+0.1, $positionCenterY+5);
         $object->setRotate(270,0,0);
@@ -113,7 +116,6 @@ class SimpleHouse extends AbstractLocation{
 
         // bad 2
         $object = new SvObject();
-        $object->setMaterial($stenaMaterial);
         $object->setType(SvTypes::BED4);
         $object->setXyz($positionCenterX+5, $positionCenterZ+0.1, $positionCenterY+20);
         $object->setRotate(270,0,0);
@@ -121,7 +123,6 @@ class SimpleHouse extends AbstractLocation{
         $this->objects[] = $object;
         // bad 2
         $object = new SvObject();
-        $object->setMaterial($stenaMaterial);
         $object->setType(SvTypes::BED1);
         $object->setXyz($positionCenterX+8, $positionCenterZ+0.1, $positionCenterY+20);
         $object->setRotate(270,0,0);
@@ -129,7 +130,6 @@ class SimpleHouse extends AbstractLocation{
         $this->objects[] = $object;
         
         $object = new SvObject();
-        $object->setMaterial($stenaMaterial);
         $object->setType(SvTypes::SOFA_4);
         $object->setXyz($positionCenterX+5, $positionCenterZ+0.1, $positionCenterY+15);
         $object->setRotate(270,180,0);
@@ -137,7 +137,6 @@ class SimpleHouse extends AbstractLocation{
         $this->objects[] = $object;
 
         $object = new SvObject();
-        $object->setMaterial($stenaMaterial);
         $object->setType(SvTypes::SOFA_3);
         $object->setXyz($positionCenterX-5, $positionCenterZ+0.1, $positionCenterY+20);
         $object->setRotate(270,180,0);
@@ -146,7 +145,6 @@ class SimpleHouse extends AbstractLocation{
 
 
         $object = new SvObject();
-        $object->setMaterial($stenaMaterial);
         $object->setType(SvTypes::WALL_PH);
         $object->setXyz($positionCenterX, $positionCenterZ+9.8, $positionCenterY+15);
         $object->setRotate(90,270,270);
@@ -154,38 +152,13 @@ class SimpleHouse extends AbstractLocation{
         $this->objects[] = $object;
 
         $object = new SvObject();
-        $object->setMaterial($stenaMaterial);
         $object->setType(SvTypes::WALL_PH);
         $object->setXyz($positionCenterX-12, $positionCenterZ+0.1, $positionCenterY+0.5);
         $object->setRotate(270,90,0);
         $object->setWidth(1, 1, 1);
         $this->objects[] = $object;
-
-        if ($light) {
-            $object = new SvObject();
-//            $object->setMaterial($stenaMaterial);
-            $object->setType(SvTypes::LIGHTP);
-            $object->setXyz($positionCenterX+5, $positionCenterZ+5, $positionCenterY+10);
-            $object->setRotate(0,0,180);
-            $object->setWidth(1.5, 1.5, 1.5);
-//            $object->setColor(0.858947456,0.7659354,0.254971772);
-//            $object->setColor(0.858947456,0.7659354,0.254971772);
-            $object->setColor(0.55,0.76,0.75);
-            $this->objects[] = $object;
-
-            $object = new SvObject();
-//            $object->setMaterial($stenaMaterial);
-            $object->setType(SvTypes::LUSTER);
-            $object->setXyz($positionCenterX+5, $positionCenterZ+8, $positionCenterY+10);
-            $object->setRotate(270,0,180);
-            $object->setWidth(1, 1, 1);
-            $this->objects[] = $object;
-        }
-
-
         
         $object = new SvObject();
-        $object->setMaterial($stenaMaterial);
         $object->setType(SvTypes::VEDRO);
         $object->setXyz($positionCenterX, $positionCenterZ+0.1, $positionCenterY+15);
         $object->setRotate(270,180,0);
@@ -193,7 +166,6 @@ class SimpleHouse extends AbstractLocation{
         $this->objects[] = $object;
         
         $object = new SvObject();
-        $object->setMaterial($stenaMaterial);
         $object->setType(SvTypes::MAFON);
         $object->setXyz($positionCenterX, $positionCenterZ+0.1, $positionCenterY+13);
         $object->setRotate(270,180,0);
@@ -201,7 +173,6 @@ class SimpleHouse extends AbstractLocation{
         $this->objects[] = $object;
         
         $object = new SvObject();
-        $object->setMaterial($stenaMaterial);
         $object->setType(SvTypes::TABLE_4);
         $object->setXyz($positionCenterX, $positionCenterZ+0.1, $positionCenterY+10);
         $object->setRotate(270,0,0);
@@ -209,7 +180,6 @@ class SimpleHouse extends AbstractLocation{
         $this->objects[] = $object;
         
         $object = new SvObject();
-        $object->setMaterial($stenaMaterial);
         $object->setType(SvTypes::CHAIR_GIOVANNETTI_BLACK);
         $object->setXyz($positionCenterX+1.5, $positionCenterZ+0.1, $positionCenterY+10);
         $object->setRotate(270,0,0);
@@ -234,7 +204,6 @@ class SimpleHouse extends AbstractLocation{
         //new table
         $positionCenterX = $positionCenterX - 5;
         $object = new SvObject();
-        $object->setMaterial($stenaMaterial);
         $object->setType(SvTypes::TABLE_4);
         $object->setXyz($positionCenterX, $positionCenterZ+0.1, $positionCenterY+10);
         $object->setRotate(270,0,0);
@@ -242,7 +211,6 @@ class SimpleHouse extends AbstractLocation{
         $this->objects[] = $object;
 
         $object = new SvObject();
-        $object->setMaterial($stenaMaterial);
         $object->setType(SvTypes::CHAIR_GIOVANNETTI_BLACK);
         $object->setXyz($positionCenterX+1.5, $positionCenterZ+0.1, $positionCenterY+10);
         $object->setRotate(270,0,0);

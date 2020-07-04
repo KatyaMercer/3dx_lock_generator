@@ -31,7 +31,7 @@ class Wood extends AbstractLocation{
             $this->objects[] = $object;
         }
     }
-    public function generate($ovjCount) {
+    public function generate($objectCount) {
         $positionCenterX = $this->positionCenterX;
         $positionCenterY = $this->positionCenterY;
         $positionCenterZ = $this->positionCenterZ;
@@ -48,12 +48,18 @@ class Wood extends AbstractLocation{
             SvTypes::BUSH1,
             SvTypes::BUSH2,
         ];
-        for($i = 0;$i<$ovjCount;$i++) {
+        for($i = 0; $i<$objectCount; $i++) {
             $object = new SvObject();
-            $object->setType($array[array_rand($array)]);
+            $type = $array[array_rand($array)];
+            $object->setType($type);
             $object->setRotate(270, rand(1,360), 0);
             $width = rand(1,2);
-            $object->setWidth($width, $width, rand(0.5,2));
+            if (0 === strpos($type, 'Bush')) {
+                $object->setWidth($width, $width, rand(50, 200) / 100);
+            } else {
+                $object->setWidth($width, $width, rand(50, 200) / 100);
+            }
+
             $x = $positionCenterX+rand(1, $size);
             $y = $positionCenterZ+rand(1, $size);
             $object->setXyz($x, $positionCenterY, $y);

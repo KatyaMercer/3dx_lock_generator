@@ -31,12 +31,15 @@ class MyWorldLocation
 
         $house = new SimpleHouse();
         $house->setPos(70, -20, 0);
-        $house->generate(true);
+        $house->korobka();
+        $house->defaultRoom();
+        $house->setLight();
         $house->drawOnScene($scene);
 
         $house = new SimpleHouse();
         $house->setPos(70, -50, 0);
-        $house->generate();
+        $house->korobka();
+        $house->defaultRoom();
         $house->drawOnScene($scene);
 
         $house = new SimpleHouse();
@@ -46,8 +49,8 @@ class MyWorldLocation
         $house->drawOnScene($scene);
 
         $boloto = new Boloto();
-        $boloto->setSize(300);
-        $boloto->setPos(-100,0,0);
+        $boloto->setSize(250);
+        $boloto->setPos(-100,0,30);
         $boloto->generate(1000,100,100,100);
         $boloto->drawOnScene($scene);
 
@@ -65,6 +68,8 @@ class MyWorldLocation
 
         $scene->setWeather(SvWeathers::NIGHT);
         $scene->setAmbient(1,1,1,4,1);
+
+        $scene->setRespawn(200,200,200);
 
         file_put_contents('zz.world', $scene->dump());
     }

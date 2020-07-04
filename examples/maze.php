@@ -62,7 +62,8 @@ $maze->drawOnScene($scene);
 
 $house = new \companies\KatyaMercer\SimpleHouse();
 $house->setPos(50,0,0);
-$house->generate();
+$house->korobka();
+$house->defaultRoom();
 $house->drawOnScene($scene);
 
 

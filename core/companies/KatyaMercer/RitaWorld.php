@@ -49,35 +49,32 @@ class RitaWorld extends AbstractLocation{
 
         $this->objects[] = $obj;
     }
-    public function generate($light = false) {
+
+    public function generate($light = false, $fromRadius = 40, $toRadius = 41) {
         $positionCenterX = $this->positionCenterX;
         $positionCenterY = $this->positionCenterY;
         $positionCenterZ = $this->positionCenterZ;
 
-        $frad = 40;
-        $trad = 41;
         $leng = $this->size;
 
         for ($le = 0; $le <= $leng; $le+=5) {
             for ($alf1 = -10; $alf1 < 190; $alf1+=40) {
                 $alf = $alf1-90;
                 if ($le> 10 and $le < $leng-10) {
-                    $x = $frad/2*sin(deg2rad($alf));
-                    $y = $frad/2*cos(deg2rad($alf));
+                    $x = $fromRadius/2*sin(deg2rad($alf));
+                    $y = $fromRadius/2*cos(deg2rad($alf));
                     $object = new SvObject();
-//            $object->setMaterial($stenaMaterial);
                     $object->setType(SvTypes::LIGHTP);
                     $object->setXyz($positionCenterX+$x,$positionCenterY+$y,$positionCenterZ+$le);
                     $object->setRotate(0, 0, 180);
                     $object->setWidth(2, 2, 2);
-//            $object->setColor(0.858947456,0.7659354,0.254971772);
                     $object->setColor(0.55, 0.76, 0.75);
                     $this->objects[] = $object;
                 }
             }
             for ($alf1 = -10; $alf1 < 190; $alf1+=10) {
                 $alf = $alf1-90;
-                $fradT = $frad;
+                $fradT = $fromRadius;
                 if ($le == $leng) {
 
                     $fradT = 15;
@@ -86,7 +83,7 @@ class RitaWorld extends AbstractLocation{
 
                     $fradT = 9;
                 }
-                for ($rad = $fradT; $rad < $trad; $rad++) {
+                for ($rad = $fradT; $rad < $toRadius; $rad++) {
                     $x = $rad*sin(deg2rad($alf));
                     $y = $rad*cos(deg2rad($alf));
                     $obj = new SvObject();
@@ -102,18 +99,16 @@ class RitaWorld extends AbstractLocation{
 
 
                 $object = new SvObject();
-//            $object->setMaterial($stenaMaterial);
                 $object->setType(SvTypes::LIGHTP);
-                $object->setXyz($positionCenterX + rand(-$trad / 3, $trad / 3), $positionCenterY + $frad / 4, $positionCenterZ + $le);
+                $object->setXyz($positionCenterX + rand(-$toRadius / 3, $toRadius / 3), $positionCenterY + $fromRadius / 4, $positionCenterZ + $le);
                 $object->setRotate(0, 0, 180);
                 $object->setWidth(2, 2, 2);
-//            $object->setColor(0.858947456,0.7659354,0.254971772);
                 $object->setColor(0.55, 0.76, 0.75);
                 $this->objects[] = $object;
             }
 
 
-            for ($x = -$frad; $x < $frad; $x+=5) {
+            for ($x = -$fromRadius; $x < $fromRadius; $x+=5) {
                 $obj = new SvObject();
                 $obj->setType($this->getRandStone());
                 $obj->setXyz($positionCenterX+$x+rand(-5,5),$positionCenterY,$positionCenterZ+$le+rand(-5,5));
@@ -130,7 +125,7 @@ class RitaWorld extends AbstractLocation{
         $obj->setMaterial(SvMaterials::STONES_3);
         $obj->setXyz($positionCenterX,$positionCenterY,$positionCenterZ);
         $obj->setRotate(0,0,0);
-        $obj->setWidth($frad*2,0.1,$leng);
+        $obj->setWidth($fromRadius*2,0.1,$leng);
         $this->objects[] = $obj;
     }
 
@@ -141,8 +136,6 @@ class RitaWorld extends AbstractLocation{
         $positionCenterZ = $this->positionCenterZ;
 
         $leng = $this->size;
-        $frad = 40;
-        $trad = 41;
 
         $def = new DefRespawn();
         $def->setHeight(10);

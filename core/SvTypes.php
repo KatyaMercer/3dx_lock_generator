@@ -181,16 +181,16 @@ class SvTypes
     const PAN_PH = 'pan_ph';
 
     //plants растения
-    const TREE7 = 'Tree7';
-    const TREE6 = 'Tree6';
+    const TREE7 = 'Tree7';//Дуб
+    const TREE6 = 'Tree6';//Кактусы
     const GRASS1 = 'Grass1';
-    const TREE5 = 'Tree5';
+    const TREE5 = 'Tree5';//Ёлочки
     const BUSH1 = 'Bush1';
     const BUSH2 = 'Bush2';
-    const TREE4 = 'Tree4';
-    const TREE2 = 'Tree2';
-    const TREE3 = 'Tree3';
-    const TREE1 = 'Tree1';
+    const TREE4 = 'Tree4';//Ель
+    const TREE2 = 'Tree2';//Пальма
+    const TREE3 = 'Tree3';//Берёза
+    const TREE1 = 'Tree1';//Ива
     const CHRISTMAS_TREE = 'christmas_tree';
     const PLANT_1 = 'plant_1';
     const PLANT_2 = 'plant_2';
