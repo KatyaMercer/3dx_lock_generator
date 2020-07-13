@@ -44,6 +44,26 @@ class SvScene
     }
 
     /**
+     * add map from json
+     *
+     * @param $json
+     */
+    public function up($json)
+    {
+        $this->scene = json_decode($json);
+    }
+
+    /**
+     * merge 2 scenes (for example from file)
+     *
+     * @param SvScene $scene
+     */
+    public function merge(SvScene $scene)
+    {
+        $this->scene->objects = array_merge($this->scene->objects, $scene->scene->objects);
+    }
+
+    /**
      * set weather
      * @param string $weather
      */
