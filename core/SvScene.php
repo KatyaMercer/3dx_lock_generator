@@ -9,7 +9,7 @@ namespace KatyaMercer;
  */
 class SvScene
 {
-    private $scene;
+    protected $scene;
 
     /**
      * SvScene constructor.
@@ -61,6 +61,19 @@ class SvScene
     public function merge(SvScene $scene)
     {
         $this->scene->objects = array_merge($this->scene->objects, $scene->scene->objects);
+    }
+
+    /**
+     * @return SvObject[]
+     */
+    public function getObjects()
+    {
+        $results = [];
+        foreach ($this->scene->objects as $object) {
+            $results[] = SvObject::createFromStd($object);
+        }
+
+        return $results;
     }
 
     /**

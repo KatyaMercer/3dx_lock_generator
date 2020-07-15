@@ -2,6 +2,7 @@
 namespace companies\Kuritan;
 use \KatyaMercer\SvMaterials;
 use \KatyaMercer\SvObject;
+use KatyaMercer\SvScene;
 use \KatyaMercer\SvTypes;
 
 /**
@@ -11,10 +12,12 @@ use \KatyaMercer\SvTypes;
  * Class MapLoader
  * @package companies\Kuritan
  */
-class MapLoader
+class MapLoader extends SvScene
 {
-    public function uploadCoordinatesFromFilename($filename)
+    public static function centerInMiddle(SvScene $scene)
     {
+        foreach ($scene->scene->objects as $object) {
 
+        }
     }
 }

@@ -20,7 +20,8 @@ class SvLoader {
         require_once DIR_SV . '/SvObject.php';
         require_once DIR_SV . '/SvWeathers.php';
         require_once DIR_SV . '/SvGroup.php';
-        
+        require_once DIR_SV . '/SvGroupOperations.php';
+
         foreach (glob(DIR_SV . "/companies/*/*.php") as $filename)
         {
             include $filename;

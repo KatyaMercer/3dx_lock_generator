@@ -42,7 +42,7 @@ class Wood extends AbstractLocation{
             SvTypes::TREE3,
             SvTypes::TREE4,
             SvTypes::TREE5,
-//            SvTypes::TREE6,
+            SvTypes::TREE6,
             SvTypes::TREE7,
             SvTypes::BUSH1,
             SvTypes::BUSH1,
@@ -73,5 +73,4 @@ class Wood extends AbstractLocation{
             $this->objects[] = $object;
         }
     }
-    
 }

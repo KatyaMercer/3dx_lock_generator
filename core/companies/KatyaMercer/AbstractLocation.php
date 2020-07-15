@@ -2,6 +2,7 @@
 namespace companies\KatyaMercer;
 
 use KatyaMercer\SvGroup;
+use KatyaMercer\SvGroupOperations;
 
 class AbstractLocation
 {
@@ -34,5 +35,11 @@ class AbstractLocation
         if ($toGroup) {
             $scene->addGroup($group);
         }
+    }
+
+    public function setRotate($x, $y, $z)
+    {
+        $rot = SvGroupOperations::createByArrayOfObjects($this->objects);
+        $rot->rotateAroundCoordinates($x,$y,$z,$this->positionCenterX, $this->positionCenterY, $this->positionCenterZ);
     }
 }

@@ -29,6 +29,24 @@ class SvObject
         $this->object->p = [$x, $y, $z];
     }
 
+    public function getXyz()
+    {
+        return (object)[
+            'x' => $this->object->p[0],
+            'y' => $this->object->p[1],
+            'z' => $this->object->p[2],
+        ];
+    }
+
+    public function getRotate()
+    {
+        return (object)[
+            'x' => $this->object->r[0],
+            'y' => $this->object->r[1],
+            'z' => $this->object->r[2],
+        ];
+    }
+
     /**
      * set width
      *
@@ -91,6 +109,18 @@ class SvObject
     public function setColor($r, $g, $b)
     {
         $this->object->c = [round($r,2), round($g,2), round($b,2)];
+    }
+
+    /**
+     * @param \stdClass $object
+     * @return SvObject
+     */
+    public static function createFromStd(\stdClass $object)
+    {
+        $new = new self();
+        $new->object = $object;
+
+        return $new;
     }
 
     /**
