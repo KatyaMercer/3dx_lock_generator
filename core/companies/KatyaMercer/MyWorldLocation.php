@@ -66,10 +66,30 @@ class MyWorldLocation
         $rw->generate();
         $rw->drawOnScene($scene, true);
 
-        $scene->setWeather(SvWeathers::NIGHT);
+        $dr = new \companies\KatyaMercer\DefRespawn();
+        $dr->setPos(0,-0.2,-200);
+        $dr->setSize((130));
+        $dr->setHeight(10);
+        $dr->generate();
+        $dr->drawOnScene($scene, true);
+
+        $dr = new \companies\KatyaMercer\DefRespawn();
+        $dr->setPos(100,-0.2,-200);
+        $dr->setSize((130));
+        $dr->setHeight(10);
+        $dr->generate();
+        $dr->drawOnScene($scene, true);
+
+        $river = new River();
+        $river->setPos(20,-1,-100);
+        $river->setSize(130);
+        $river->generate();
+        $river->drawOnScene($scene);
+
+        $scene->setWeather(SvWeathers::CLOUDY);
         $scene->setAmbient(1,1,1,4,1);
 
-        $scene->setRespawn(200,200,200);
+//        $scene->setRespawn(200,200,200);
 
         file_put_contents('zz.world', $scene->dump());
     }
