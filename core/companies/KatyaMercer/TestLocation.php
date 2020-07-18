@@ -16,7 +16,36 @@ use KatyaMercer\SvWeathers;
  */
 class TestLocation
 {
-    public function run2()
+    public function runf()
+    {
+        $s1 = new SvScene();
+        $s1->setOceanlevel(-100);
+
+        $x = 0;$y=0;$z=0;
+        $dx = 10;
+        $dy = 20;
+        $dz = 30;
+
+        $o = new SvObject();
+        $o->setXyz($x,$y,$z);
+        $o->setType(SvTypes::BOX);
+        $o->setWidth(1,2,3);
+        $o->setRotate($dx,$dy,$dz);
+        $o->setMaterial(SvMaterials::STONES_8);
+        $s1->addObject($o);
+
+
+        $o = new SvObject();
+        $o->setXyz($x,$y,$z);
+        $o->setType(SvTypes::BOX);
+        $o->setWidth(1,2,3);
+        $o->setRotate($dx,$dy,$dz);
+        $o->setMaterial(SvMaterials::STONES_8);
+        $s1->addObject($o);
+
+        file_put_contents('z3.world', $s1->dump());
+    }
+    public function runаы()
     {
         $s1 = new SvScene();
         $s1->setOceanlevel(-100);
@@ -28,47 +57,25 @@ class TestLocation
         $o->setMaterial(SvMaterials::STONES_8);
         $s1->addObject($o);
 
-//        $z = new SimpleHouse();
-//        $z->setPos(10,10,10);
-//        $z->korobka();
-//        $z->drawOnScene($s1);
-//        $z->setRotate(20,0,0);
-//        $z->drawOnScene($s1);
         $o = new SvObject();
-        $o->setXyz(2,2,2);
+        $o->setXyz(10,10,10);
         $o->setType(SvTypes::BOX);
         $o->setWidth(1,2,3);
         $o->setRotate(0,0,0);
         $o->setMaterial(SvMaterials::STONES_8);
         $s1->addObject($o);
 
-        $w = new SvObject();
-        $w->setXyz(2,2,2);
-        $w->setType(SvTypes::BOX);
-        $w->setWidth(3,2,1);
-        $w->setRotate(0,0,0);
-        $w->setMaterial(SvMaterials::STONES_8);
-        $s1->addObject($w);
+        for ($i = 0; $i < 360; $i+=20) {
+            $o1 = clone $o;
 
-        $o1 = clone $o;
-        $w1 = clone $w;
-        $o1->setMaterial(SvMaterials::WOOD_13);
-        $w1->setMaterial(SvMaterials::WOOD_13);
+            $o1->setMaterial(SvMaterials::WOOD_13);
 
-        $r = SvGroupOperations::createByArrayOfObjects([$o1, $w1]);
-        $r->rotateAroundCoordinates(80,0,0);
-        $s1->addObject($o1);
-        $s1->addObject($w1);
-
-        $o1 = clone $o;
-        $w1 = clone $w;
-        $o1->setMaterial(SvMaterials::SAND_3);
-        $w1->setMaterial(SvMaterials::SAND_3);
-
-        $r = SvGroupOperations::createByArrayOfObjects([$o1, $w1]);
-        $r->rotateAroundCoordinates(0,70,0);
-        $s1->addObject($o1);
-        $s1->addObject($w1);
+            $r = SvGroupOperations::createByArrayOfObjects([$o1]);
+            $r->rotateAroundCoordinates($i,0,0);
+            foreach ($r->objects as $object) {
+                $s1->addObject($object);
+            }
+        }
 
         file_put_contents('z3.world', $s1->dump());
     }
@@ -81,8 +88,12 @@ class TestLocation
         $z = new SimpleHouse();
         $z->setPos(0,0,0);
         $z->korobka();
+        $z->defaultRoom();
         $z->drawOnScene($s1);
-        $z->setRotate(20,40,12);
+        $z->setRotate(20,0,0);
+        $z->setRotate(20,0,0);
+//        $z->setRotate(0,30,0);
+//        $z->setRotate(0,0,100);
         $z->drawOnScene($s1);
         file_put_contents('z3.world', $s1->dump());
     }

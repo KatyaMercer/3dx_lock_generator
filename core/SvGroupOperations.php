@@ -10,7 +10,7 @@ namespace KatyaMercer;
  */
 class SvGroupOperations
 {
-    private $objects = [];
+    public $objects = [];
 
     public static function createByArrayOfObjects($objects)
     {
@@ -20,12 +20,12 @@ class SvGroupOperations
         return $new;
     }
 
-    private function distance($pos1, $pos2)
+    public function distance($pos1, $pos2)
     {
         return pow(pow($pos1->x - $pos2->x , 2) + pow($pos1->y - $pos2->y , 2) + pow($pos1->z - $pos2->z, 2), 0.5);
     }
 
-    private function matrixX($alfa)
+    public function matrixX($alfa)
     {
         return [
             [1, 0, 0],
@@ -34,7 +34,7 @@ class SvGroupOperations
         ];
     }
 
-    private function matrixY($alfa)
+    public function matrixY($alfa)
     {
         return [
             [cos($alfa), 0, sin($alfa)],
@@ -43,7 +43,7 @@ class SvGroupOperations
         ];
     }
 
-    private function matrixZ($alfa)
+    public function matrixZ($alfa)
     {
         return [
             [cos($alfa), -sin($alfa), 0],
@@ -57,55 +57,28 @@ class SvGroupOperations
         $radX = deg2rad($degX);
         $radY = deg2rad($degY);
         $radZ = deg2rad($degZ);
+        $debugObjects = [];
         foreach ($this->objects as $object)
         {
             /**
              * @var SvObject $object
              */
             $position = $object->getXyz();
-//            $position->x = $position->x-$aroundX;
-//            $position->y = $position->y-$aroundY;
-//            $position->z = $position->z-$aroundZ;
 
-            // я готовлю специальную искусственную точку
-            $notRealPoint = clone $position;
-            $notRealPoint->x = 10;
-            $notRealPoint->y = 10;
-            $notRealPoint->z = 10;
             $rotate = $object->getRotate();
-            $notRealPoint = $this->multiMatrix($notRealPoint, $this->matrixX(deg2rad($rotate->x)));
-            $notRealPoint = $this->multiMatrix($notRealPoint, $this->matrixY(deg2rad($rotate->y)));
-            $notRealPoint = $this->multiMatrix($notRealPoint, $this->matrixZ(deg2rad($rotate->z)));
-            $notRealPoint->x = $notRealPoint->x + $position->x;
-            $notRealPoint->y = $notRealPoint->y + $position->y;
-            $notRealPoint->z = $notRealPoint->z + $position->z;
 
             $position = $this->multiMatrix($position, $this->matrixX($radX));
             $position = $this->multiMatrix($position, $this->matrixY($radY));
             $position = $this->multiMatrix($position, $this->matrixZ($radZ));
 
-            $notRealPoint = $this->multiMatrix($notRealPoint, $this->matrixX($radX));
-            $notRealPoint = $this->multiMatrix($notRealPoint, $this->matrixY($radY));
-            $notRealPoint = $this->multiMatrix($notRealPoint, $this->matrixZ($radZ));
-            $distance = $this->distance($position, $notRealPoint);
-            $rotX = rad2deg(acos((-$position->x+$notRealPoint->x)/$distance));
-            $rotY = rad2deg(acos((-$position->y+$notRealPoint->y)/$distance));
-            $rotZ = rad2deg(acos((-$position->z+$notRealPoint->z)/$distance));
-            $object->setRotate(
-                $rotX,
-                $rotY,
-                $rotZ
-            );
-
-//            $position->x = $position->x+$aroundX;
-//            $position->y = $position->y+$aroundY;
-//            $position->z = $position->z+$aroundZ;
+            $object->setRotate($rotate->x - $degX, $rotate->y - $degY, $rotate->z - $degZ);
 
             $object->setXyz($position->x, $position->y, $position->z);
         }
+        $this->objects = array_merge($this->objects, $debugObjects);
     }
 
-    private function multiMatrix($coord, $rotate)
+    public function multiMatrix($coord, $rotate)
     {
         return (object)[
             'x' => $coord->x * $rotate[0][0] + $coord->y * $rotate[1][0] + $coord->z * $rotate[2][0],
