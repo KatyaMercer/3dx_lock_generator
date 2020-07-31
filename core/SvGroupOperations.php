@@ -64,6 +64,9 @@ class SvGroupOperations
              * @var SvObject $object
              */
             $position = $object->getXyz();
+            $position->x = $position->x-$aroundX;
+            $position->y = $position->y-$aroundY;
+            $position->z = $position->z-$aroundZ;
 
             $rotate = $object->getRotate();
 
@@ -73,6 +76,9 @@ class SvGroupOperations
 
             $object->setRotate($rotate->x - $degX, $rotate->y - $degY, $rotate->z - $degZ);
 
+            $position->x = $position->x+$aroundX;
+            $position->y = $position->y+$aroundY;
+            $position->z = $position->z+$aroundZ;
             $object->setXyz($position->x, $position->y, $position->z);
         }
         $this->objects = array_merge($this->objects, $debugObjects);

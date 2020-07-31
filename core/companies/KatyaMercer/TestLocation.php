@@ -45,7 +45,7 @@ class TestLocation
 
         file_put_contents('z3.world', $s1->dump());
     }
-    public function runаы()
+    public function run()
     {
         $s1 = new SvScene();
         $s1->setOceanlevel(-100);
@@ -59,9 +59,9 @@ class TestLocation
 
         $o = new SvObject();
         $o->setXyz(10,10,10);
-        $o->setType(SvTypes::BOX);
+        $o->setType(SvTypes::CHAIR_2);
         $o->setWidth(1,2,3);
-        $o->setRotate(0,0,0);
+        $o->setRotate(270,0,0);
         $o->setMaterial(SvMaterials::STONES_8);
         $s1->addObject($o);
 
@@ -71,7 +71,9 @@ class TestLocation
             $o1->setMaterial(SvMaterials::WOOD_13);
 
             $r = SvGroupOperations::createByArrayOfObjects([$o1]);
-            $r->rotateAroundCoordinates($i,0,0);
+            $r->rotateAroundCoordinates(0,0,$i);
+//            $r->rotateAroundCoordinates(0,20,0);
+//            $r->rotateAroundCoordinates(0,0,20);
             foreach ($r->objects as $object) {
                 $s1->addObject($object);
             }
@@ -80,19 +82,24 @@ class TestLocation
         file_put_contents('z3.world', $s1->dump());
     }
 
-    public function run()
+    public function run1()
     {
         $s1 = new SvScene();
         $s1->setOceanlevel(-100);
 
+//        $z = new Wood();
+//        $z->setPos(0,0,0);
+//        $z->setSize(100);
+//        $z->generate(100);
+
         $z = new SimpleHouse();
-        $z->setPos(0,0,0);
         $z->korobka();
-        $z->defaultRoom();
-        $z->drawOnScene($s1);
-        $z->setRotate(20,0,0);
-        $z->setRotate(20,0,0);
-//        $z->setRotate(0,30,0);
+//        $z->defaultRoom();
+//        $z->drawOnScene($s1);
+//        $z->setRotate(20,0,0);
+//        $z->setRotate(0,110,0);
+//        $z->setRotate(0,0,50);
+        $z->setRotate(0,30,0);
 //        $z->setRotate(0,0,100);
         $z->drawOnScene($s1);
         file_put_contents('z3.world', $s1->dump());
