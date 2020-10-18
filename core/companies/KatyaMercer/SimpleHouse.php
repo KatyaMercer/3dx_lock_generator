@@ -38,6 +38,28 @@ class SimpleHouse extends AbstractLocation{
         $this->objects[] = $object;
     }
 
+    public function perednyayaStenka($stenaMaterial = SvMaterials::WOOD_7)
+    {
+        $positionCenterX = $this->positionCenterX;
+        $positionCenterY = $this->positionCenterY;
+        $positionCenterZ = $this->positionCenterZ;
+        $object = new SvObject();
+        $object->setType(SvTypes::BOX);
+        $object->setMaterial($stenaMaterial);
+        $object->setColor(0.99,0.88,1);
+        $object->setXyz($positionCenterX-12.5, $positionCenterZ+5, $positionCenterY);
+        $object->setWidth(0.05, 10, 20);
+        $this->objects[] = $object;
+
+        $object = new SvObject();
+        $object->setType(SvTypes::BOX);
+        $object->setMaterial(SvMaterials::FOLIAGE_3);
+        $object->setColor(0.99,0.88,1);
+        $object->setXyz($positionCenterX-12.5, $positionCenterZ+5, $positionCenterY+20);
+        $object->setWidth(0.05, 10, 5);
+        $this->objects[] = $object;
+    }
+
     public function theatre()
     {
         $positionCenterX = $this->positionCenterX;
@@ -78,6 +100,23 @@ class SimpleHouse extends AbstractLocation{
         $this->objects[] = $object;
 
 
+    }
+    public function setLightRand()
+    {
+        $positionCenterX = $this->positionCenterX;
+        $positionCenterY = $this->positionCenterY;
+        $positionCenterZ = $this->positionCenterZ;
+        for($i=1;$i<25;$i+=2) {
+            for($j=1;$j<25;$j+=2) {
+                $object = new SvObject();
+                $object->setColor(rand(1,100)/100,rand(1,100)/100,rand(1,100)/100);
+                $object->setType(SvTypes::LIGHTP);
+                $object->setRotate(270,0,0);
+                $object->setXyz($positionCenterX-12.5+$i, $positionCenterZ+5, $positionCenterY+$j);
+                $object->setWidth(1, 1, 1);
+                $this->objects[] = $object;
+            }
+        }
     }
 
     public function setLight($r = 0.55, $g = 0.76, $b = 0.75)

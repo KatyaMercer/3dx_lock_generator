@@ -50,7 +50,7 @@ class RitaWorld extends AbstractLocation{
         $this->objects[] = $obj;
     }
 
-    public function generate($light = false, $fromRadius = 40, $toRadius = 41) {
+    public function generate($light = false, $fromRadius = 40, $toRadius = 41, $needDrawDown = false) {
         $positionCenterX = $this->positionCenterX;
         $positionCenterY = $this->positionCenterY;
         $positionCenterZ = $this->positionCenterZ;
@@ -107,26 +107,29 @@ class RitaWorld extends AbstractLocation{
                 $this->objects[] = $object;
             }
 
-
-            for ($x = -$fromRadius; $x < $fromRadius; $x+=5) {
-                $obj = new SvObject();
-                $obj->setType($this->getRandStone());
-                $obj->setXyz($positionCenterX+$x+rand(-5,5),$positionCenterY,$positionCenterZ+$le+rand(-5,5));
-                $obj->setRotate(rand(0,360),rand(0,360),rand(0,360));
-                $obj->setWidth(1,1,1);
-                $this->objects[] = $obj;
+            if ($needDrawDown) {
+                for ($x = -$fromRadius; $x < $fromRadius; $x += 5) {
+                    $obj = new SvObject();
+                    $obj->setType($this->getRandStone());
+                    $obj->setXyz($positionCenterX + $x + rand(-5, 5), $positionCenterY, $positionCenterZ + $le + rand(-5, 5));
+                    $obj->setRotate(rand(0, 360), rand(0, 360), rand(0, 360));
+                    $obj->setWidth(1, 1, 1);
+                    $this->objects[] = $obj;
+                }
             }
         }
 
-        $this->generPlatform();
 
-        $obj = new SvObject();
-        $obj->setType(SvTypes::BOX);
-        $obj->setMaterial(SvMaterials::STONES_3);
-        $obj->setXyz($positionCenterX,$positionCenterY,$positionCenterZ);
-        $obj->setRotate(0,0,0);
-        $obj->setWidth($fromRadius*2,0.1,$leng);
-        $this->objects[] = $obj;
+        if ($needDrawDown) {
+            $obj = new SvObject();
+            $obj->setType(SvTypes::BOX);
+            $obj->setMaterial(SvMaterials::STONES_3);
+            $obj->setXyz($positionCenterX,$positionCenterY,$positionCenterZ);
+            $obj->setRotate(0,0,0);
+            $obj->setWidth($fromRadius*2,0.1,$leng);
+            $this->objects[] = $obj;
+        }
+
     }
 
     public function generPlatform()

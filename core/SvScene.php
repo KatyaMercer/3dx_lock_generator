@@ -9,7 +9,7 @@ namespace KatyaMercer;
  */
 class SvScene
 {
-    private $scene;
+    protected $scene;
 
     /**
      * SvScene constructor.
@@ -27,6 +27,11 @@ class SvScene
     public function addObject(SvObject $object) 
     {
             $this->scene->objects[] = $object->getObject();
+    }
+
+    public function clean()
+    {
+        $this->scene->objects = [];
     }
 
     public function addGroup(SvGroup $group)

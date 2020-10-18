@@ -21,9 +21,15 @@ class SvLoader {
         require_once DIR_SV . '/SvWeathers.php';
         require_once DIR_SV . '/SvGroup.php';
         
-        foreach (glob(DIR_SV . "/companies/*/*.php") as $filename)
-        {
-            include $filename;
-        }
+//        foreach (glob(DIR_SV . "/companies/*/*.php") as $filename)
+//        {
+//            include $filename;
+//        }
+        spl_autoload_register(function($className) {
+            $className = str_replace('\\', '/', $className);
+            if (file_exists(__DIR__ . '/' . $className . '.php')) {
+                require_once __DIR__ . '/' . $className . '.php';
+            }
+        });
     }
 }

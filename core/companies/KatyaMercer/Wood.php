@@ -31,7 +31,7 @@ class Wood extends AbstractLocation{
             $this->objects[] = $object;
         }
     }
-    public function generate($objectCount) {
+    public function generate($objectCount, $sizeKoef = 1) {
         $positionCenterX = $this->positionCenterX;
         $positionCenterY = $this->positionCenterY;
         $positionCenterZ = $this->positionCenterZ;
@@ -57,7 +57,7 @@ class Wood extends AbstractLocation{
             if (0 === strpos($type, 'Bush')) {
                 $object->setWidth($width, $width, rand(50, 200) / 100);
             } else {
-                $object->setWidth($width, $width, rand(50, 200) / 100);
+                $object->setWidth($sizeKoef*$width, $sizeKoef*$width, $sizeKoef*rand(50, 200) / 100);
             }
 
             $x = $positionCenterX+rand(1, $size);

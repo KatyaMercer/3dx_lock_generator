@@ -50,11 +50,15 @@ class River extends AbstractLocation
         $lxdown = 0;
         $lzdown = 0;
         for ($dx = 1;$dx < $this->size;$dx++) {
-
+//            $s1 = rand(1,4)/10;
+//            $s2 = rand(1,2)/10;
+//            $c1 = rand(1,3)/10;
+//            $c2 = rand(1,2)/10;
+//            $dz = 10*sin($s1*$dx) * cos($c1*$dx-$s1*10) ;
+//            $dzdown = 8*sin($s2*$dx) * cos($c2*$dx-$s1*10);
             $dz = 10*sin(3*$dx/10) * cos($dx/10-5) ;
             $dzdown = 8*sin($dx/10) * cos(2*$dx/10-1);
-//            $dz = -pow($dx*1000, 0.5/$dx);
-//            $dzdown = -pow($dx*1000, 0.5/$dx);
+
 
             if (0 != $dz-$lztop) {
                 $ugol = rad2deg(atan(($dx-$lxtop)/($dz-$lztop)));
@@ -85,16 +89,17 @@ class River extends AbstractLocation
             $obj->setWidth(2,2,7);
             $obj->setRotate(270, 0,0); // rand(0,360)
             $this->objects[] = $obj;
+            $width = 50;
 
             $obj = new SvObject();
             $obj->setType($this->getRandStone());
-            $obj->setXyz($positionCenterX+$dx,$positionCenterY,$positionCenterZ+$dzdown-40);
+            $obj->setXyz($positionCenterX+$dx,$positionCenterY,$positionCenterZ+$dzdown-$width);
             $obj->setRotate(270, $ugoldown,0); // rand(0,360)
             $obj->setWidth(2,$distdown/2,1);
             $this->objects[] = $obj;
 
             $obj = clone $obj;
-            $obj->setXyz($positionCenterX+$dx,$positionCenterY,$positionCenterZ+$dzdown-40+5);
+            $obj->setXyz($positionCenterX+$dx,$positionCenterY,$positionCenterZ+$dzdown-$width+5);
             $obj->setType(SvTypes::GRASS1);
             $obj->setWidth(2,2,7);
             $obj->setRotate(270, 0,0); // rand(0,360)
@@ -103,15 +108,15 @@ class River extends AbstractLocation
             $obj = new SvObject();
             $obj->setMaterial(SvMaterials::WATER);
             $obj->setType(SvTypes::BOX);
-            $obj->setXyz($positionCenterX+$dx,$positionCenterY,$positionCenterZ+$dzdown-40);
+            $obj->setXyz($positionCenterX+$dx,$positionCenterY,$positionCenterZ+$dzdown-$width);
             $obj->setRotate(0, 1,0); // rand(0,360)
-            $obj->setWidth(1.2,1,40+$dz-$dzdown);
+            $obj->setWidth(1.2,1,$width+$dz-$dzdown);
             $this->objects[] = $obj;
 
             $obj = clone $obj;
-            $obj->setXyz($positionCenterX+$dx,$positionCenterY-0.1,$positionCenterZ+$dzdown-40);
+            $obj->setXyz($positionCenterX+$dx,$positionCenterY-0.1,$positionCenterZ+$dzdown-$width);
             $obj->setMaterial(SvMaterials::SAND);
-            $obj->setWidth(1.2,0.1,40+$dz-$dzdown);
+            $obj->setWidth(1.2,0.1,$width+$dz-$dzdown);
             $this->objects[] = $obj;
         }
     }
