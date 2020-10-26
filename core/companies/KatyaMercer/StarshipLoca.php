@@ -37,7 +37,7 @@ class StarshipLoca
         $rw->generate();
 //        $rw->generPlatform();
         $rw->drawOnScene($scene, false);
-        $scene->setRespawn(0,7,120);
+        $scene->setRespawn(0,7,170);
 
 //        RotateLoc::xToY($scene);
         $scene->setOceanlevel(-1000);

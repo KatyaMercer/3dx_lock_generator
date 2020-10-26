@@ -99,10 +99,10 @@ class StarShip extends AbstractLocation
         $sub->generate($leng-10,$leng);
 
         $sub = new TusaSubroom($this);
-        $sub->generate($leng-36,$leng-10);
+        $sub->generate($leng*3/4-$radius*1.5, $leng*3/4+11);
 
-//        $sub = new SpaceSubroom($this);
-//        $sub->generate();
+        $sub = new SpaceSubroom($this);
+        $sub->generate();
     }
 
     private function vint()
@@ -525,7 +525,7 @@ class StarShip extends AbstractLocation
             $object = new SvObject();
             $object->setType(SvTypes::BOX);
             $object->setXyz($positionCenterX + $rot * 2 * $radius, $positionCenterY, $positionCenterZ + $sublength - 2 * $radius);
-            $object->setMaterial($material);
+            $object->setMaterial(SvMaterials::WALLPAPER_10);
             $object->setRotate(0, 0, 0);
             $object->setWidth(2 * $radius, 0.25, 2 * $radius);
             $this->objects[] = $object;
@@ -547,6 +547,107 @@ class StarShip extends AbstractLocation
         if ($material === SvMaterials::METAL_2) {
             $this->drawKrilo($rot, SvMaterials::WALLPAPER_1);
         }
+
+        //podushki
+        if ($rot == -1) {
+
+            for ($i = 1;$i < 60;$i++) {
+
+                $x = rand($rot * 1.5 * $radius, $rot * 3 * $radius-$rot*2);
+                $z = rand($sublength - $radius+5, $sublength-2);
+
+                $type = rand(1,2);
+                $object = new SvObject();
+                $object->setType($type == 2 ? SvTypes::PILLOW1 : SvTypes::BOXCH);
+                $object->setXyz($positionCenterX + $x,$positionCenterY , $positionCenterZ + $z);
+                $object->setMaterial(SvMaterials::WALLPAPER_16);
+
+                if ($type == 2) {
+                    $object->setWidth(1, 1, 1);
+                    $object->setRotate(270+rand(-5,5), rand(1,360), 0);
+                } else {
+                    $object->setWidth(2, 0.5, 2);
+                    $object->setRotate(rand(-5,5), rand(1,360), 0);
+                }
+                $object->setColor(rand(1,250)/250, rand(1,250)/250, rand(1,250)/250);
+
+                $this->objects[] = $object;
+
+                $type = rand(-3,7);
+                if ($type > 3) {
+                    $object = new SvObject();
+                    if ($type == 4) {
+                        $object->setType(SvTypes::POOL_PH);
+                    }
+                    if ($type == 5) {
+                        $object->setType(SvTypes::SOFA_PH);
+                    }
+                    if ($type == 6) {
+                        $object->setType(SvTypes::WALL_PH);
+                    }
+                    if ($type == 7) {
+                        $object->setType(SvTypes::BED_PH);
+                    }
+
+
+                    $object->setXyz($positionCenterX + $x,$positionCenterY, $positionCenterZ + $z);
+                    $object->setMaterial(SvMaterials::WALLPAPER_16);
+                    $object->setRotate(270, rand(1,360), 0);
+                    $object->setWidth(1, 1, 1);
+                    $this->objects[] = $object;
+                }
+
+            }
+        }
+    }
+
+    public function stolik($x, $z, $dy = 0) {
+        $radius = $this->getRadius();
+        $positionCenterX = $this->positionCenterX;
+        $positionCenterY = $this->positionCenterY;
+        $positionCenterZ = $this->positionCenterZ;
+
+        $leng = $this->size;
+
+        $stoliki = [
+            SvTypes::TABLE_4_DECOR,
+            SvTypes::TABLE_4,
+            SvTypes::TABLE_2,
+        ];
+        $stuliya = [
+            SvTypes::CHAIR_GIOVANNETTI_RED,
+            SvTypes::CHAIR_GIOVANNETTI_BLACK,
+            SvTypes::CHAIR_GIOVANNETTI_WHITE,
+            SvTypes::CHAIR_2,
+            SvTypes::CHAIR_3,
+            SvTypes::CHAIR_4,
+            SvTypes::CHAIR_5,
+            SvTypes::CHAIR_6,
+        ];
+        $object = new SvObject();
+        $object->setType($stoliki[array_rand($stoliki)]);
+        $object->setXyz($x, $y, $z);
+        $object->setRotate(270, 0, 0);
+        $this->starShip->objects[] = $object;
+        $pos = [
+            [
+                'alfaY' => 0,
+                'x' => -1,
+                'y' => 0,
+            ],
+            [
+                'alfaY' => 90,
+                'x' => -1,
+                'y' => 0,
+            ],
+
+        ];
+        $object = new SvObject();
+        $object->setType(SvTypes::CHAIR_GIOVANNETTI_BLACK);
+        $object->setXyz($positionCenterX + $radius-7, $positionCenterY, $positionCenterZ + $center);
+        $object->setRotate(270, 0, 0);
+        $this->starShip->objects[] = $object;
+
 
     }
 }
