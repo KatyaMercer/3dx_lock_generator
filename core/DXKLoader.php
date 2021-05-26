@@ -3,23 +3,23 @@
 namespace KatyaMercer;
 /**
  * Loader of all project
- * include '../core/SvLoader.php';
- * $sfApp = new SvLoader();
+ * include '../core/DXKLoader.php';
+ * $sfApp = new DXKLoader();
  * and you will include all needed things
  *
- * Class SvLoader
+ * Class DXKLoader
  * @package KatyaMercer
  */
-class SvLoader {
+class DXKLoader {
 
     public function __construct() {
         define('DIR_SV', __DIR__);
-        require_once DIR_SV . '/SvMaterials.php';
-        require_once DIR_SV . '/SvTypes.php';
-        require_once DIR_SV . '/SvScene.php';
-        require_once DIR_SV . '/SvObject.php';
-        require_once DIR_SV . '/SvWeathers.php';
-        require_once DIR_SV . '/SvGroup.php';
+        require_once DIR_SV . '/DXKMaterials.php';
+        require_once DIR_SV . '/DXKTypes.php';
+        require_once DIR_SV . '/DXKScene.php';
+        require_once DIR_SV . '/DXKObject.php';
+        require_once DIR_SV . '/DXKWeathers.php';
+        require_once DIR_SV . '/DXKGroup.php';
         
 //        foreach (glob(DIR_SV . "/companies/*/*.php") as $filename)
 //        {

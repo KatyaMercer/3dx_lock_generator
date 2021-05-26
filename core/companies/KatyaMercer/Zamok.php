@@ -1,15 +1,15 @@
 <?php
 namespace companies\KatyaMercer;
-use \KatyaMercer\SvMaterials;
-use \KatyaMercer\SvObject;
-use \KatyaMercer\SvTypes;
+use \KatyaMercer\DXKMaterials;
+use \KatyaMercer\DXKObject;
+use \KatyaMercer\DXKTypes;
 class Zamok extends AbstractLocation{
 
     private $height = 20;
     private $width = 50;
     private $widthDown = 3;
 
-    public function mainRoomBox($stenaMaterial = SvMaterials::STONES_17, $florMaterial = SvMaterials::STONES_10)
+    public function mainRoomBox($stenaMaterial = DXKMaterials::STONES_17, $florMaterial = DXKMaterials::STONES_10)
     {
         $positionCenterX = $this->positionCenterX;
         $positionCenterY = $this->positionCenterY;
@@ -19,19 +19,19 @@ class Zamok extends AbstractLocation{
         $width = $this->width;
         $widthDown = $this->widthDown;
 
-        $object = new SvObject();
+        $object = new DXKObject();
         // пол
-        $object->setMaterial(SvMaterials::SAND);
-        $object->setType(SvTypes::BOX);
+        $object->setMaterial(DXKMaterials::SAND);
+        $object->setType(DXKTypes::BOX);
 //        $object->setColor(0.19,0.68,0.34);
         $object->setXyz($positionCenterX, $positionCenterZ-$widthDown/2+2, $positionCenterY);
         $object->setWidth($width, $widthDown, 0.5);
         $this->objects[] = $object;
 
-        $object = new SvObject();
+        $object = new DXKObject();
         // пол
         $object->setMaterial($florMaterial);
-        $object->setType(SvTypes::BOX);
+        $object->setType(DXKTypes::BOX);
 //        $object->setColor(0.19,0.68,0.34);
         $object->setXyz($positionCenterX, $positionCenterZ-$widthDown/2, $positionCenterY);
         $object->setWidth($width, $widthDown, $width);
@@ -76,9 +76,9 @@ class Zamok extends AbstractLocation{
         $this->objects[] = $object;
 
         //окна
-        $okno = new SvObject();
-        $okno->setMaterial(SvMaterials::GLASS_3);
-        $okno->setType(SvTypes::BOX);
+        $okno = new DXKObject();
+        $okno->setMaterial(DXKMaterials::GLASS_3);
+        $okno->setType(DXKTypes::BOX);
         $okno->setXyz($positionCenterX, $positionCenterZ+$heightWindows-$heightForWindows, $positionCenterY);
         $okno->setWidth($width, $heightWindows, 0.5);
         $this->objects[] = $okno;
@@ -122,18 +122,18 @@ class Zamok extends AbstractLocation{
         $this->objects[] = $object;
 
         // двери
-        $object = new SvObject();
-        $object->setType(SvTypes::DOOR1);
-        $object->setMaterial(SvMaterials::WOOD_11);
+        $object = new DXKObject();
+        $object->setType(DXKTypes::DOOR1);
+        $object->setMaterial(DXKMaterials::WOOD_11);
         $object->setRotate(270,90,0);
         $object->setXyz($positionCenterX+$width/2, $positionCenterZ+$doorHeight/2, $positionCenterY+$width/2-$doorX);
         $object->setWidth($doorX, 2, $doorHeight);
         $object->setColor(15,15,15);
         $this->objects[] = $object;
 
-        $object = new SvObject();
-        $object->setType(SvTypes::DOOR1);
-        $object->setMaterial(SvMaterials::WOOD_11);
+        $object = new DXKObject();
+        $object->setType(DXKTypes::DOOR1);
+        $object->setMaterial(DXKMaterials::WOOD_11);
         $object->setRotate(270,270,0);
         $object->setXyz($positionCenterX+$width/2, $positionCenterZ+$doorHeight/2, $positionCenterY+$width/2+$doorX);
         $object->setWidth($doorX, 2, $doorHeight);
@@ -142,9 +142,9 @@ class Zamok extends AbstractLocation{
 
         //лесница
         for ($x = 2; $x < $widthDown/2+4;$x+=2) {
-            $object = new SvObject();
-            $object->setMaterial(SvMaterials::STONES_10);
-            $object->setType(SvTypes::STAIR2);
+            $object = new DXKObject();
+            $object->setMaterial(DXKMaterials::STONES_10);
+            $object->setType(DXKTypes::STAIR2);
             $object->setRotate(270,270,0);
             $object->setXyz($positionCenterX+$width/2+$x, $positionCenterZ-$x, $positionCenterY+$width/2);
             $object->setWidth($width, 1, 1);
@@ -153,9 +153,9 @@ class Zamok extends AbstractLocation{
 
 
         // башни $doorHeight как высота над
-        $object = new SvObject();
+        $object = new DXKObject();
         $object->setMaterial($stenaMaterial);
-        $object->setType(SvTypes::CYLINDER);
+        $object->setType(DXKTypes::CYLINDER);
         $object->setRotate(270,270,0);
         $object->setXyz($positionCenterX-$width/2, $positionCenterZ-$widthDown, $positionCenterY);
         $object->setWidth(3, 3, $height+$widthDown+$doorHeight);
@@ -185,10 +185,10 @@ class Zamok extends AbstractLocation{
         $width = $this->width;
         $widthDown = $this->widthDown;
 
-        $object = new SvObject();
+        $object = new DXKObject();
         // пол
-        $object->setMaterial(SvMaterials::WALLPAPER_16);
-        $object->setType(SvTypes::BOXCH);
+        $object->setMaterial(DXKMaterials::WALLPAPER_16);
+        $object->setType(DXKTypes::BOXCH);
 //        $object->setColor(0.19,0.68,0.34);
         $object->setXyz($positionCenterX, $positionCenterZ-$widthDown/2+1.5, $positionCenterY);
         $object->setWidth(5, 0.2, 5);
@@ -205,10 +205,10 @@ class Zamok extends AbstractLocation{
         $width = $this->width;
         $widthDown = $this->widthDown;
 
-        $object = new SvObject();
-        $object->setMaterial(SvMaterials::WALLPAPER_4);
+        $object = new DXKObject();
+        $object->setMaterial(DXKMaterials::WALLPAPER_4);
         $object->setColor(15,0,0);
-        $object->setType(SvTypes::PRISM);
+        $object->setType(DXKTypes::PRISM);
         $object->setRotate(270,270,0);
         $object->setXyz($positionCenterX+$width/2, $positionCenterZ-$widthDown+$height/2+3, $positionCenterY+$width/2);
         $object->setWidth(1, 2, 3);
@@ -228,10 +228,10 @@ class Zamok extends AbstractLocation{
         $object->setRotate(90,270,0);
         $this->objects[] = $object;
 
-        $object = new SvObject();
-        $object->setMaterial(SvMaterials::WALLPAPER_4);
+        $object = new DXKObject();
+        $object->setMaterial(DXKMaterials::WALLPAPER_4);
         $object->setColor(15,15,15);
-        $object->setType(SvTypes::CYLINDER);
+        $object->setType(DXKTypes::CYLINDER);
         $object->setRotate(0,90,270);
         $object->setXyz($positionCenterX+$width/2-0.6, $positionCenterZ-$widthDown+$height/2+6, $positionCenterY+$width/2);
         $object->setWidth(7, 7, 1.2);
@@ -251,8 +251,8 @@ class Zamok extends AbstractLocation{
             for ($x = 5;$x<$width;$x+=5) {
                 for ($y = 5;$y<$width;$y+=5) {
 
-                    $object = new SvObject();
-                    $object->setMaterial(SvMaterials::WALLPAPER_4);
+                    $object = new DXKObject();
+                    $object->setMaterial(DXKMaterials::WALLPAPER_4);
 //                    $object->setColor(0.9,1,1);
                     if ($shine) {
                         $object->setColor($shine['r'],$shine['g'],$shine['b']);
@@ -260,7 +260,7 @@ class Zamok extends AbstractLocation{
                         $object->setColor(rand(1,100)/100,rand(1,100)/100,rand(1,100)/100);
                     }
 
-                    $object->setType(SvTypes::LIGHTP);
+                    $object->setType(DXKTypes::LIGHTP);
                     $object->setRotate(270,0,0);
                     $object->setXyz($positionCenterX+$width/2-$x, $positionCenterZ-$widthDown+$z, $positionCenterY+$y);
                     $object->setWidth(1, 1, 1);
@@ -281,72 +281,72 @@ class Zamok extends AbstractLocation{
         $width = $this->width;
         $widthDown = $this->widthDown;
 
-        $object = new SvObject();
-        $object->setMaterial(SvMaterials::STONES_10);
-        $object->setType(SvTypes::BOX);
+        $object = new DXKObject();
+        $object->setMaterial(DXKMaterials::STONES_10);
+        $object->setType(DXKTypes::BOX);
         $object->setXyz($positionCenterX-$width/4, $positionCenterZ+$widthDown/2+$height/2, $positionCenterY);
         $object->setWidth($width/2, 1, $width/2);
         $this->objects[] = $object;
 
         //лесница
         for ($x = 2; $x < $height/2+4;$x+=2) {
-            $object = new SvObject();
-            $object->setMaterial(SvMaterials::STONES_10);
-            $object->setType(SvTypes::STAIR2);
+            $object = new DXKObject();
+            $object->setMaterial(DXKMaterials::STONES_10);
+            $object->setType(DXKTypes::STAIR2);
             $object->setRotate(270,270,0);
             $object->setXyz($positionCenterX+$x, $positionCenterZ+$widthDown/2+$height/2-$x+0.5, $positionCenterY+$width/4);
             $object->setWidth($width/4, 1, 1);
             $this->objects[] = $object;
         }
 
-        $object = new SvObject();
-        $object->setType(SvTypes::BED6);
+        $object = new DXKObject();
+        $object->setType(DXKTypes::BED6);
         $object->setXyz($positionCenterX-$width/4, $positionCenterZ+$widthDown/2+$height/2+0.5, $positionCenterY+5);
         $object->setRotate(270,0,0);
         $this->objects[] = $object;
 
-        $object = new SvObject();
-        $object->setType(SvTypes::CHAIR_GIOVANNETTI_RED);
+        $object = new DXKObject();
+        $object->setType(DXKTypes::CHAIR_GIOVANNETTI_RED);
         $object->setXyz($positionCenterX-$width/4+5, $positionCenterZ+$widthDown/2+$height/2+0.5, $positionCenterY+5);
         $object->setRotate(270,0,0);
         $this->objects[] = $object;
 
-        $object = new SvObject();
-        $object->setType(SvTypes::SOFA_2);
+        $object = new DXKObject();
+        $object->setType(DXKTypes::SOFA_2);
         $object->setXyz($positionCenterX-$width/4+5, $positionCenterZ+$widthDown/2+$height/2+0.5, $positionCenterY+8);
         $object->setRotate(270,90,0);
         $this->objects[] = $object;
 
-        $object = new SvObject();
-        $object->setType(SvTypes::VEDRO);
+        $object = new DXKObject();
+        $object->setType(DXKTypes::VEDRO);
         $object->setXyz($positionCenterX-$width/4+2, $positionCenterZ+$widthDown/2+$height/2+0.5, $positionCenterY+8);
         $object->setRotate(270,0,0);
         $this->objects[] = $object;
 
-        $object = new SvObject();
-        $object->setType(SvTypes::MAFON);
+        $object = new DXKObject();
+        $object->setType(DXKTypes::MAFON);
         $object->setXyz($positionCenterX-$width/4+2, $positionCenterZ+$widthDown/2+$height/2+0.5, $positionCenterY+6);
         $object->setRotate(270,0,0);
         $this->objects[] = $object;
 
-        $object = new SvObject();
-        $object->setType(SvTypes::POLE);
+        $object = new DXKObject();
+        $object->setType(DXKTypes::POLE);
         $object->setXyz($positionCenterX-$width/4+6, $positionCenterZ+$widthDown/2+$height/2+0.5, $positionCenterY+12);
         $object->setRotate(270,0,0);
         $this->objects[] = $object;
 
-        $object = new SvObject();
-        $object->setType(SvTypes::WALL_PH);
+        $object = new DXKObject();
+        $object->setType(DXKTypes::WALL_PH);
         $object->setXyz($positionCenterX-$width/4-2, $positionCenterZ+$widthDown/2+$height/2+0.5, $positionCenterY+1.6);
         $object->setRotate(270,90,0);
         $this->objects[] = $object;
 
-        $object = new SvObject();
-        $object->setType(SvTypes::BOXCH);
+        $object = new DXKObject();
+        $object->setType(DXKTypes::BOXCH);
         $object->setXyz($positionCenterX-$width/4-2, $positionCenterZ+$widthDown/2+$height/2+0.5, $positionCenterY+1);
         $object->setRotate(270,90,0);
         $object->setWidth(0.5,2,2);
-        $object->setMaterial(SvMaterials::BRICK_1);
+        $object->setMaterial(DXKMaterials::BRICK_1);
         $this->objects[] = $object;
     }
     

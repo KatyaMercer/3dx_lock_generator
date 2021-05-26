@@ -5,10 +5,10 @@ namespace KatyaMercer;
 /**
  * Object: red sofa or green tree with size, rotate, position ...
  *
- * Class SvObject
+ * Class DXKObject
  * @package KatyaMercer
  */
-class SvObject
+class DXKObject
 {
     private $object;
 
@@ -54,7 +54,7 @@ class SvObject
     }
 
     /**
-     * material (look SvMaterials) (wood, stone ...)
+     * material (look DXKMaterials) (wood, stone ...)
      *
      * @param $material
      */

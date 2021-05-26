@@ -3,9 +3,9 @@ namespace companies\KatyaMercer\Sh;
 
 
 use companies\KatyaMercer\AbstractLocation;
-use KatyaMercer\SvMaterials;
-use KatyaMercer\SvObject;
-use KatyaMercer\SvTypes;
+use KatyaMercer\DXKMaterials;
+use KatyaMercer\DXKObject;
+use KatyaMercer\DXKTypes;
 
 class StarShip extends AbstractLocation
 {
@@ -52,20 +52,20 @@ class StarShip extends AbstractLocation
                 $this->drawIllum($alfa, $x, $y);
                 continue;
             }
-            $object = new SvObject();
-            $object->setType(SvTypes::BOX);
+            $object = new DXKObject();
+            $object->setType(DXKTypes::BOX);
             $object->setXyz($positionCenterX + $x, $positionCenterY + $y, $positionCenterZ);
-            $object->setMaterial(SvMaterials::METAL_2);
+            $object->setMaterial(DXKMaterials::WALLPAPER_2);
             $object->setRotate(0, 0, -$alfa);
             $object->setWidth($this->plastinaSize, 0.25, $leng);
             $this->objects[] = $object;
             $x = ($radius-0.25) * sin(deg2rad($alfa));
             $y = ($radius-0.25) * cos(deg2rad($alfa));
 
-            $object = new SvObject();
-            $object->setType(SvTypes::BOX);
+            $object = new DXKObject();
+            $object->setType(DXKTypes::BOX);
             $object->setXyz($positionCenterX + $x, $positionCenterY + $y, $positionCenterZ);
-            $object->setMaterial(SvMaterials::WALLPAPER_1);
+            $object->setMaterial(DXKMaterials::WALLPAPER_1);
             $object->setRotate(0, 0, -$alfa);
             $object->setWidth($this->plastinaSize, 0.25, $leng);
             $this->objects[] = $object;
@@ -73,15 +73,15 @@ class StarShip extends AbstractLocation
             $x = ($radius-0.25) * sin(deg2rad($alfa));
             $y = ($radius-0.25) * cos(deg2rad($alfa));
 
-                $object = new SvObject();
-                $object->setType(SvTypes::LIGHTP);
-                $object->setXyz($positionCenterX + $x, $positionCenterY + $y, $positionCenterZ+$leng/2);
-                $object->setRotate(0, 0, -$alfa);
-                $dColor = 3;
-                $object->setColor(0.03 , 0.04, 0.04);
-//                $object->setColor(0.8, 1, 0.4);
-                $object->setWidth($this->plastinaSize, 0.25, $leng*2);
-                $this->objects[] = $object;
+//                $object = new DXKObject();
+//                $object->setType(DXKTypes::LIGHTP);
+//                $object->setXyz($positionCenterX + $x, $positionCenterY + $y, $positionCenterZ+$leng/2);
+//                $object->setRotate(0, 0, -$alfa);
+//                $dColor = 3;
+//                $object->setColor(0.03 , 0.04, 0.04);
+////                $object->setColor(0.8, 1, 0.4);
+//                $object->setWidth($this->plastinaSize, 0.25, $leng*2);
+//                $this->objects[] = $object;
 
 
         }
@@ -95,14 +95,17 @@ class StarShip extends AbstractLocation
         $sub = new SpalnyaSubroom($this);
         $sub->generate(0,12);
 
+        $sub = new SpalnyaSubroom($this);
+        $sub->generate(12,24);
+
         $sub = new RubkaSubroom($this);
         $sub->generate($leng-10,$leng);
 
         $sub = new TusaSubroom($this);
         $sub->generate($leng*3/4-$radius*1.5, $leng*3/4+11);
 
-        $sub = new SpaceSubroom($this);
-        $sub->generate();
+//        $sub = new SpaceSubroom($this);
+//        $sub->generate();
     }
 
     private function vint()
@@ -113,10 +116,10 @@ class StarShip extends AbstractLocation
         $positionCenterZ = $this->positionCenterZ;
         $leng = $this->size;
 
-//        $object = new SvObject();
-//        $object->setType(SvTypes::FIRE);
+//        $object = new DXKObject();
+//        $object->setType(DXKTypes::FIRE);
 //        $object->setXyz($positionCenterX, $positionCenterY, $positionCenterZ-$radius-2);
-//        $object->setMaterial(SvMaterials::WALLPAPER_1);
+//        $object->setMaterial(DXKMaterials::WALLPAPER_1);
 //        $object->setRotate(180, 0, 0);
 //        $object->setWidth($radius/2, $radius/2, 10);
 //        $this->objects[] = $object;
@@ -147,27 +150,27 @@ class StarShip extends AbstractLocation
                 continue;
             }
             if ($noWindow || $alfa === 270 || $alfa === 90) {
-                $object = new SvObject();
-                $object->setType(SvTypes::BOX);
+                $object = new DXKObject();
+                $object->setType(DXKTypes::BOX);
                 $object->setXyz($positionCenterX + $x, $positionCenterY + $y, $positionCenterZ+$i);
-                $object->setMaterial(SvMaterials::METAL_2);
+                $object->setMaterial(DXKMaterials::WALLPAPER_2);
                 $object->setRotate(0, 0, -$alfa);
                 $object->setWidth($this->plastinaSize, 0.25, $delta);
                 $this->objects[] = $object;
 
-                $object = new SvObject();
-                $object->setType(SvTypes::BOX);
+                $object = new DXKObject();
+                $object->setType(DXKTypes::BOX);
                 $object->setXyz($positionCenterX + $x2, $positionCenterY + $y2, $positionCenterZ+$i);
-                $object->setMaterial(SvMaterials::WALLPAPER_1);
+                $object->setMaterial(DXKMaterials::WALLPAPER_1);
                 $object->setRotate(0, 0, -$alfa);
                 $object->setWidth($this->plastinaSize, 0.25, $delta);
                 $this->objects[] = $object;
             } else {
                 if ($alfa === 280 || $alfa === 85) {
-                    $object = new SvObject();
-                    $object->setType(SvTypes::BOX);
+                    $object = new DXKObject();
+                    $object->setType(DXKTypes::BOX);
                     $object->setXyz($positionCenterX + $x, $positionCenterY + $y, $positionCenterZ+$i);
-                    $object->setMaterial(SvMaterials::GLASS_2);
+                    $object->setMaterial(DXKMaterials::GLASS_2);
                     $object->setRotate(0, 0, -$alfa);
                     $object->setWidth($this->plastinaSize*1.75, 0.25, $delta);
                     $this->objects[] = $object;
@@ -188,40 +191,40 @@ class StarShip extends AbstractLocation
         $positionCenterZ = $this->positionCenterZ;
         $leng = $this->size;
         $d = sqrt(($radius*$radius)-pow($this->positionCenterY,2));
-        $object = new SvObject();
-        $object->setType(SvTypes::BOX);
+        $object = new DXKObject();
+        $object->setType(DXKTypes::BOX);
         $object->setXyz($positionCenterX, 0, $positionCenterZ);
-        $object->setMaterial(SvMaterials::GRASS_1);
+        $object->setMaterial(DXKMaterials::GRASS_1);
         $object->setRotate(0, 0, 0);
         $object->setWidth($d*2, 0.25, $leng);
         $this->objects[] = $object;
         $types = [
             [
-                'tree' => SvTypes::TREE2,
+                'tree' => DXKTypes::TREE2,
                 'ydelta' => 0,
                 'width' => 0.45,
                 'count' => 3,
             ],
             [
-                'tree' => SvTypes::TREE1,
+                'tree' => DXKTypes::TREE1,
                 'ydelta' => 0,
                 'width' => 0.45,
                 'count' => 2,
             ],
             [
-                'tree' => SvTypes::BUSH2,
+                'tree' => DXKTypes::BUSH2,
                 'ydelta' => 0,
                 'width' => 1,
                 'count' => 5,
             ],
             [
-                'tree' => SvTypes::GRASS1,
+                'tree' => DXKTypes::GRASS1,
                 'ydelta' => 0,
                 'width' => 2,
                 'count' => 10,
             ],
             [
-                'tree' => SvTypes::TREE4,
+                'tree' => DXKTypes::TREE4,
                 'ydelta' => 0,
                 'width' => 0.45,
                 'count' => 4,
@@ -231,7 +234,7 @@ class StarShip extends AbstractLocation
         for($i = 1;$i<$leng;$i++) {
             $type = $types[array_rand($types)];
             for ($j = 1;$j<$type['count'];$j++) {
-                $object = new SvObject();
+                $object = new DXKObject();
                 $object->setType($type['tree']);
                 $object->setXyz($positionCenterX+rand(-$radius/2,$radius/2), $type['ydelta'], $positionCenterZ+rand(1,$leng));
                 $object->setRotate(270, rand(1,360), 0);
@@ -241,8 +244,8 @@ class StarShip extends AbstractLocation
 
         }
         for ($i = 1; $i < $leng;$i+= $leng/5) {
-            $object = new SvObject();
-            $object->setType(SvTypes::SOFA_7);
+            $object = new DXKObject();
+            $object->setType(DXKTypes::SOFA_7);
             $object->setXyz($positionCenterX+$radius/2+3, 0, $positionCenterZ+$i);
             $object->setRotate(270, 180, 0);
             $this->objects[] = $object;
@@ -252,18 +255,18 @@ class StarShip extends AbstractLocation
             $delta = $i*$d ;
             $deltaA = $i*180;
 
-            $object = new SvObject();
-            $object->setType(SvTypes::SEMIARCH1);
+            $object = new DXKObject();
+            $object->setType(DXKTypes::SEMIARCH1);
             $object->setXyz($positionCenterX + $d / 2 - $delta, 0, $positionCenterZ + $leng);
-            $object->setMaterial(SvMaterials::GRASS_2);
+            $object->setMaterial(DXKMaterials::GRASS_2);
             $object->setRotate(0, 0, 0+$deltaA);
             $object->setWidth($d, 0.25, $d);
             $this->objects[] = $object;
 
-            $object = new SvObject();
-            $object->setType(SvTypes::SEMIARCH1);
+            $object = new DXKObject();
+            $object->setType(DXKTypes::SEMIARCH1);
             $object->setXyz($positionCenterX , 0, $positionCenterZ - $d / 2);
-            $object->setMaterial(SvMaterials::GRASS_2);
+            $object->setMaterial(DXKMaterials::GRASS_2);
             $object->setRotate(0+$deltaA, 90, 0);
             $object->setWidth($d, 0.25, $d);
             $this->objects[] = $object;
@@ -280,35 +283,35 @@ class StarShip extends AbstractLocation
         for ($i = 0;$i<=1;$i++) {
             $delta = $i*$radius ;
             $deltaA = $i*180;
-            $object = new SvObject();
-            $object->setType(SvTypes::BOX);
+            $object = new DXKObject();
+            $object->setType(DXKTypes::BOX);
             $object->setXyz($positionCenterX + $radius / 2 - $delta, $positionCenterY - 0.125, $positionCenterZ);
-            $object->setMaterial(SvMaterials::WALLPAPER_1);
+            $object->setMaterial(DXKMaterials::WALLPAPER_1);
             $object->setRotate(0, 0, 0+$deltaA);
             $object->setWidth($radius, 0.25, $leng);
             $this->objects[] = $object;
 
-            $object = new SvObject();
-            $object->setType(SvTypes::SEMIARCH1);
+            $object = new DXKObject();
+            $object->setType(DXKTypes::SEMIARCH1);
             $object->setXyz($positionCenterX + $radius / 2 - $delta, $positionCenterY - 0.125, $positionCenterZ + $leng);
-            $object->setMaterial(SvMaterials::WALLPAPER_1);
+            $object->setMaterial(DXKMaterials::WALLPAPER_1);
             $object->setRotate(0, 0, 0+$deltaA);
             $object->setWidth($radius, 0.25, $radius);
             $this->objects[] = $object;
 
             if ($i == 1) {
-                $object = new SvObject();
-                $object->setType(SvTypes::SEMIARCH1);
+                $object = new DXKObject();
+                $object->setType(DXKTypes::SEMIARCH1);
                 $object->setXyz($positionCenterX , $positionCenterY - 0.125, $positionCenterZ - $radius / 2);
-                $object->setMaterial(SvMaterials::WALLPAPER_1);
+                $object->setMaterial(DXKMaterials::WALLPAPER_1);
                 $object->setRotate(0+$deltaA, 90, 0);
                 $object->setWidth($radius, 0.25, $radius);
                 $this->objects[] = $object;
             } else {
-                $object = new SvObject();
-                $object->setType(SvTypes::SEMIARCH1);
+                $object = new DXKObject();
+                $object->setType(DXKTypes::SEMIARCH1);
                 $object->setXyz($positionCenterX , $positionCenterY - 0.125, $positionCenterZ - $radius / 2);
-                $object->setMaterial(SvMaterials::GRASS_3);
+                $object->setMaterial(DXKMaterials::GRASS_3);
                 $object->setRotate(45, 90, 0);
                 $object->setWidth($radius, 0.25, $radius);
                 $this->objects[] = $object;
@@ -326,10 +329,10 @@ class StarShip extends AbstractLocation
         $leng = $this->size;
         $sloi = [
             [
-                'material' => SvMaterials::METAL_2,
+                'material' => DXKMaterials::WALLPAPER_2,
                 'radius' => $radius
             ],[
-                'material' => SvMaterials::WALLPAPER_1,
+                'material' => DXKMaterials::WALLPAPER_1,
                 'radius' => $radius-0.25
             ],
         ];
@@ -337,8 +340,8 @@ class StarShip extends AbstractLocation
             $radius = $sloy['radius'];
             $material = $sloy['material'];
             $d = 2.03;
-            $object = new SvObject();
-            $object->setType(SvTypes::EGG1);
+            $object = new DXKObject();
+            $object->setType(DXKTypes::EGG1);
             $object->setXyz($positionCenterX, $positionCenterY, $positionCenterZ+$leng);
             $object->setMaterial($material);
             $object->setRotate(0, 0, 0);
@@ -351,15 +354,15 @@ class StarShip extends AbstractLocation
 
             $object = clone $object;
             $object->setRotate(0,0,90);
-            $object->setMaterial(SvMaterials::GLASS_2);
+            $object->setMaterial(DXKMaterials::GLASS_2);
             $this->objects[] = $object;
 
             $object = clone $object;
             $object->setRotate(0,-90,90);
             $this->objects[] = $object;
             // зад
-            $object = new SvObject();
-            $object->setType(SvTypes::EGG1);
+            $object = new DXKObject();
+            $object->setType(DXKTypes::EGG1);
             $object->setXyz($positionCenterX, $positionCenterY, $positionCenterZ);
             $object->setMaterial($material);
             $object->setRotate(0, 90, 0);
@@ -393,18 +396,18 @@ class StarShip extends AbstractLocation
         $x = ($radius - 0.25) * sin(deg2rad($alfa));
         $y = ($radius - 0.25) * cos(deg2rad($alfa));
 
-        $object = new SvObject();
-        $object->setType(SvTypes::BOX);
+        $object = new DXKObject();
+        $object->setType(DXKTypes::BOX);
         $object->setXyz($positionCenterX + $x, $positionCenterY + $y, $positionCenterZ);
-        $object->setMaterial(SvMaterials::WALLPAPER_1);
+        $object->setMaterial(DXKMaterials::WALLPAPER_1);
         $object->setRotate(0, 0, -$alfa);
         $object->setWidth($this->plastinaSize, 0.25, $leng/2-5);
         $this->objects[] = $object;
 
-        $object = new SvObject();
-        $object->setType(SvTypes::BOX);
+        $object = new DXKObject();
+        $object->setType(DXKTypes::BOX);
         $object->setXyz($positionCenterX + $x, $positionCenterY + $y, $positionCenterZ+$leng/2+7);
-        $object->setMaterial(SvMaterials::WALLPAPER_1);
+        $object->setMaterial(DXKMaterials::WALLPAPER_1);
         $object->setRotate(0, 0, -$alfa);
         $object->setWidth($this->plastinaSize, 0.25, $leng/2-7);
         $this->objects[] = $object;
@@ -412,18 +415,18 @@ class StarShip extends AbstractLocation
         $x = ($radius) * sin(deg2rad($alfa));
         $y = ($radius) * cos(deg2rad($alfa));
 
-        $object = new SvObject();
-        $object->setType(SvTypes::BOX);
+        $object = new DXKObject();
+        $object->setType(DXKTypes::BOX);
         $object->setXyz($positionCenterX + $x, $positionCenterY + $y, $positionCenterZ);
-        $object->setMaterial(SvMaterials::METAL_2);
+        $object->setMaterial(DXKMaterials::WALLPAPER_2);
         $object->setRotate(0, 0, -$alfa);
         $object->setWidth($this->plastinaSize, 0.25, $leng/2-5);
         $this->objects[] = $object;
 
-        $object = new SvObject();
-        $object->setType(SvTypes::BOX);
+        $object = new DXKObject();
+        $object->setType(DXKTypes::BOX);
         $object->setXyz($positionCenterX + $x, $positionCenterY + $y, $positionCenterZ+$leng/2+7);
-        $object->setMaterial(SvMaterials::METAL_2);
+        $object->setMaterial(DXKMaterials::WALLPAPER_2);
         $object->setRotate(0, 0, -$alfa);
         $object->setWidth($this->plastinaSize, 0.25, $leng/2-7);
         $this->objects[] = $object;
@@ -432,28 +435,28 @@ class StarShip extends AbstractLocation
         $xRazmer = $this->plastinaSize*3;
         if ($alfa == 0) {
             //труба
-            $object = new SvObject();
-            $object->setType(SvTypes::TUBE);
+            $object = new DXKObject();
+            $object->setType(DXKTypes::TUBE);
             $object->setXyz($positionCenterX + $x, $positionCenterY + $y+6, $positionCenterZ+$leng/2+1);
-            $object->setMaterial(SvMaterials::GLASS_3);
+            $object->setMaterial(DXKMaterials::GLASS_3);
             $object->setRotate(90, 0, 0);
             $object->setColor(0.4,0.4,0.4);
             $object->setWidth($xRazmer, $this->plastinaSize*10, 6);
             $this->objects[] = $object;
 
-            $object = new SvObject();
-            $object->setType(SvTypes::CYLINDER);
+            $object = new DXKObject();
+            $object->setType(DXKTypes::CYLINDER);
             $object->setXyz($positionCenterX + $x, $positionCenterY + $y+6.25, $positionCenterZ+$leng/2+1);
-            $object->setMaterial(SvMaterials::GLASS_3);
+            $object->setMaterial(DXKMaterials::GLASS_3);
             $object->setColor(0.4,0.4,0.4);
             $object->setRotate(90, 0, 0);
             $object->setWidth($xRazmer, $this->plastinaSize*10, 0.25);
             $this->objects[] = $object;
 
-//            $object = new SvObject();
-//            $object->setType(SvTypes::LIGHTP);
+//            $object = new DXKObject();
+//            $object->setType(DXKTypes::LIGHTP);
 //            $object->setXyz($positionCenterX + $x, $positionCenterY + $y+4.25, $positionCenterZ+$leng/2+1);
-//            $object->setMaterial(SvMaterials::GLASS_3);
+//            $object->setMaterial(DXKMaterials::GLASS_3);
 //            $object->setColor(1.3,1.3,1.3);
 //            $object->setRotate(90, 0, 0);
 //            $object->setWidth($xRazmer, $xRazmer, 0.25);
@@ -461,10 +464,10 @@ class StarShip extends AbstractLocation
 
             //лестница
             for ($height = 0; $height < round($radius/2); $height++) {
-                $object = new SvObject();
-                $object->setType(SvTypes::STAIR2);
+                $object = new DXKObject();
+                $object->setType(DXKTypes::STAIR2);
                 $object->setXyz($positionCenterX + $x, $positionCenterY + $y - $height*2, $positionCenterZ-5+$leng/2+ $height*2);
-                $object->setMaterial(SvMaterials::WALLPAPER_1);
+                $object->setMaterial(DXKMaterials::WALLPAPER_1);
                 $object->setRotate(0, 0, 0);
                 $object->setWidth($this->plastinaSize*3, 1, 1);
                 $this->objects[] = $object;
@@ -473,9 +476,9 @@ class StarShip extends AbstractLocation
         }
     }
 
-    private function drawKrilo($rot = 1, $material = SvMaterials::METAL_2)
+    private function drawKrilo($rot = 1, $material = DXKMaterials::WALLPAPER_2)
     {
-        $radius = $this->getRadius() + ($material === SvMaterials::METAL_2 ? 0.25 : 0.1);
+        $radius = $this->getRadius() + ($material === DXKMaterials::WALLPAPER_2 ? 0.25 : 0.1);
         $positionCenterX = $this->positionCenterX;
         $positionCenterY = $this->positionCenterY;
         $positionCenterZ = $this->positionCenterZ;
@@ -484,8 +487,8 @@ class StarShip extends AbstractLocation
         $sublength = 3*$leng/4;
         // bok
         $ybok = $rot === 1 ? 0 : 90;
-        $object = new SvObject();
-        $object->setType(SvTypes::EGG5);
+        $object = new DXKObject();
+        $object->setType(DXKTypes::EGG5);
         $object->setXyz($positionCenterX + $rot * $radius, $positionCenterY, $positionCenterZ+$sublength);
         $object->setMaterial($material);
         $object->setRotate(270, 0, 3*$ybok);
@@ -507,10 +510,10 @@ class StarShip extends AbstractLocation
         //kabina
         $krilLen = 3;
         for ($i = 1; $i< $krilLen; $i++) {
-            $object = new SvObject();
-            $object->setType(SvTypes::EGG2);
+            $object = new DXKObject();
+            $object->setType(DXKTypes::EGG2);
             $object->setXyz($positionCenterX + $rot * $radius*(0.5+ $i), $positionCenterY, $positionCenterZ+$sublength-$radius);
-            $object->setMaterial(SvMaterials::GLASS_3);
+            $object->setMaterial(DXKMaterials::GLASS_3);
             $object->setRotate(270, 0, 0);
             $object->setWidth(2*$radius,2* $radius, 2*$radius);
             $this->objects[] = $object;
@@ -521,19 +524,19 @@ class StarShip extends AbstractLocation
             $this->objects[] = $object;
         }
         //pol
-        if ($material !== SvMaterials::METAL_2) {
-            $object = new SvObject();
-            $object->setType(SvTypes::BOX);
+        if ($material !== DXKMaterials::WALLPAPER_2) {
+            $object = new DXKObject();
+            $object->setType(DXKTypes::BOX);
             $object->setXyz($positionCenterX + $rot * 2 * $radius, $positionCenterY, $positionCenterZ + $sublength - 2 * $radius);
-            $object->setMaterial(SvMaterials::WALLPAPER_10);
+            $object->setMaterial(DXKMaterials::WALLPAPER_10);
             $object->setRotate(0, 0, 0);
             $object->setWidth(2 * $radius, 0.25, 2 * $radius);
             $this->objects[] = $object;
         }
 
         //konec
-        $object = new SvObject();
-        $object->setType(SvTypes::SEMIARCH1);
+        $object = new DXKObject();
+        $object->setType(DXKTypes::SEMIARCH1);
         $object->setXyz($positionCenterX + $rot *3* $radius, $positionCenterY+$radius/2, $positionCenterZ+$sublength-$radius);
         $object->setMaterial($material);
         $object->setRotate(0, 0, 90);
@@ -544,8 +547,8 @@ class StarShip extends AbstractLocation
         $object->setRotate(0, 180, 90);
         $this->objects[] = $object;
 
-        if ($material === SvMaterials::METAL_2) {
-            $this->drawKrilo($rot, SvMaterials::WALLPAPER_1);
+        if ($material === DXKMaterials::WALLPAPER_2) {
+            $this->drawKrilo($rot, DXKMaterials::WALLPAPER_1);
         }
 
         //podushki
@@ -557,10 +560,10 @@ class StarShip extends AbstractLocation
                 $z = rand($sublength - $radius+5, $sublength-2);
 
                 $type = rand(1,2);
-                $object = new SvObject();
-                $object->setType($type == 2 ? SvTypes::PILLOW1 : SvTypes::BOXCH);
+                $object = new DXKObject();
+                $object->setType($type == 2 ? DXKTypes::PILLOW1 : DXKTypes::BOXCH);
                 $object->setXyz($positionCenterX + $x,$positionCenterY , $positionCenterZ + $z);
-                $object->setMaterial(SvMaterials::WALLPAPER_16);
+                $object->setMaterial(DXKMaterials::WALLPAPER_16);
 
                 if ($type == 2) {
                     $object->setWidth(1, 1, 1);
@@ -572,31 +575,6 @@ class StarShip extends AbstractLocation
                 $object->setColor(rand(1,250)/250, rand(1,250)/250, rand(1,250)/250);
 
                 $this->objects[] = $object;
-
-                $type = rand(-3,7);
-                if ($type > 3) {
-                    $object = new SvObject();
-                    if ($type == 4) {
-                        $object->setType(SvTypes::POOL_PH);
-                    }
-                    if ($type == 5) {
-                        $object->setType(SvTypes::SOFA_PH);
-                    }
-                    if ($type == 6) {
-                        $object->setType(SvTypes::WALL_PH);
-                    }
-                    if ($type == 7) {
-                        $object->setType(SvTypes::BED_PH);
-                    }
-
-
-                    $object->setXyz($positionCenterX + $x,$positionCenterY, $positionCenterZ + $z);
-                    $object->setMaterial(SvMaterials::WALLPAPER_16);
-                    $object->setRotate(270, rand(1,360), 0);
-                    $object->setWidth(1, 1, 1);
-                    $this->objects[] = $object;
-                }
-
             }
         }
     }
@@ -610,43 +588,56 @@ class StarShip extends AbstractLocation
         $leng = $this->size;
 
         $stoliki = [
-            SvTypes::TABLE_4_DECOR,
-            SvTypes::TABLE_4,
-            SvTypes::TABLE_2,
+            DXKTypes::TABLE_4_DECOR,
+            DXKTypes::TABLE_4,
+            DXKTypes::TABLE_2,
         ];
         $stuliya = [
-            SvTypes::CHAIR_GIOVANNETTI_RED,
-            SvTypes::CHAIR_GIOVANNETTI_BLACK,
-            SvTypes::CHAIR_GIOVANNETTI_WHITE,
-            SvTypes::CHAIR_2,
-            SvTypes::CHAIR_3,
-            SvTypes::CHAIR_4,
-            SvTypes::CHAIR_5,
-            SvTypes::CHAIR_6,
+            DXKTypes::CHAIR_GIOVANNETTI_RED,
+            DXKTypes::CHAIR_GIOVANNETTI_BLACK,
+            DXKTypes::CHAIR_GIOVANNETTI_WHITE,
+            DXKTypes::CHAIR_2,
+            DXKTypes::CHAIR_3,
+            DXKTypes::CHAIR_4,
+            DXKTypes::CHAIR_5,
+            DXKTypes::CHAIR_6,
         ];
-        $object = new SvObject();
+        $object = new DXKObject();
         $object->setType($stoliki[array_rand($stoliki)]);
-        $object->setXyz($x, $y, $z);
+        $object->setXyz($x, $positionCenterY+$dy, $z);
         $object->setRotate(270, 0, 0);
-        $this->starShip->objects[] = $object;
+        $this->objects[] = $object;
         $pos = [
             [
                 'alfaY' => 0,
+                'x' => 1,
+                'z' => 0,
+            ],
+            [
+                'alfaY' => 180,
                 'x' => -1,
-                'y' => 0,
+                'z' => 0,
             ],
             [
                 'alfaY' => 90,
-                'x' => -1,
-                'y' => 0,
+                'x' => 0,
+                'z' => -1,
+            ],
+            [
+                'alfaY' => 270,
+                'x' => 0,
+                'z' => 1,
             ],
 
         ];
-        $object = new SvObject();
-        $object->setType(SvTypes::CHAIR_GIOVANNETTI_BLACK);
-        $object->setXyz($positionCenterX + $radius-7, $positionCenterY, $positionCenterZ + $center);
-        $object->setRotate(270, 0, 0);
-        $this->starShip->objects[] = $object;
+        foreach ($pos as $po) {
+            $object = new DXKObject();
+            $object->setType(DXKTypes::CHAIR_GIOVANNETTI_BLACK);
+            $object->setXyz($x+ $po['x'], $positionCenterY+ $dy, $z + $po['z']);
+            $object->setRotate(270, $po['alfaY'], 0);
+            $this->objects[] = $object;
+        }
+
 
 
     }

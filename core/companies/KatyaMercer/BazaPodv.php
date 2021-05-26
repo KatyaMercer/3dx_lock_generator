@@ -2,11 +2,11 @@
 
 namespace companies\KatyaMercer;
 
-use KatyaMercer\SvMaterials;
-use KatyaMercer\SvObject;
-use KatyaMercer\SvScene;
-use KatyaMercer\SvTypes;
-use KatyaMercer\SvWeathers;
+use KatyaMercer\DXKMaterials;
+use KatyaMercer\DXKObject;
+use KatyaMercer\DXKScene;
+use KatyaMercer\DXKTypes;
+use KatyaMercer\DXKWeathers;
 
 /**
  * runner companies\KatyaMercer\BazaPodv
@@ -20,7 +20,7 @@ class BazaPodv
 {
     public function run()
     {
-        $scene = new SvScene();
+        $scene = new DXKScene();
 
 
 

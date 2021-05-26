@@ -3,16 +3,16 @@ namespace KatyaMercer;
 /**
  * Main object what will save to file
  *
- * Class SvGroup
+ * Class DXKGroup
  *
  * @package KatyaMercer
  */
-class SvGroup
+class DXKGroup
 {
     private $group;
 
     /**
-     * SvScene constructor.
+     * DXKScene constructor.
      */
     public function __construct()
     {
@@ -22,9 +22,9 @@ class SvGroup
     /**
      * add object to group
      *
-     * @param SvObject $object
+     * @param DXKObject $object
      */
-    public function addObject(SvObject $object) 
+    public function addObject(DXKObject $object)
     {
             $this->group->objects[] = $object->getObject();
     }

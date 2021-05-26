@@ -2,9 +2,9 @@
 namespace companies\KatyaMercer;
 
 
-use KatyaMercer\SvMaterials;
-use KatyaMercer\SvObject;
-use KatyaMercer\SvTypes;
+use KatyaMercer\DXKMaterials;
+use KatyaMercer\DXKObject;
+use KatyaMercer\DXKTypes;
 
 class Submarine extends AbstractLocation
 {
@@ -30,10 +30,10 @@ class Submarine extends AbstractLocation
                 $this->drawIllum($alfa, $x, $y);
                 continue;
             }
-            $object = new SvObject();
-            $object->setType(SvTypes::BOX);
+            $object = new DXKObject();
+            $object->setType(DXKTypes::BOX);
             $object->setXyz($positionCenterX + $x, $positionCenterY + $y, $positionCenterZ);
-            $object->setMaterial(SvMaterials::METAL_2);
+            $object->setMaterial(DXKMaterials::METAL_2);
             $object->setRotate(0, 0, -$alfa);
             $object->setWidth(2, 0.25, $leng);
             $this->objects[] = $object;
@@ -53,10 +53,10 @@ class Submarine extends AbstractLocation
                 }
                 $x = ($radius/2) * sin(deg2rad($alfa));
                 $y = ($radius/2) * cos(deg2rad($alfa));
-                $object = new SvObject();
-                $object->setType(SvTypes::LIGHTP);
+                $object = new DXKObject();
+                $object->setType(DXKTypes::LIGHTP);
                 $object->setXyz($positionCenterX + $x, $positionCenterY + $y, $positionCenterZ+$le);
-                $object->setMaterial(SvMaterials::METAL_2);
+                $object->setMaterial(DXKMaterials::METAL_2);
                 $object->setRotate(90, 90, $alfa);
                 $object->setColor(1, 0.5, 0.5);
                 $object->setWidth(1, 1, 1);
@@ -78,10 +78,10 @@ class Submarine extends AbstractLocation
         $leng = $this->size;
 
         for ($alfa = 0; $alfa < 360; $alfa += 30) {
-            $object = new SvObject();
-            $object->setType(SvTypes::EGG5);
+            $object = new DXKObject();
+            $object->setType(DXKTypes::EGG5);
             $object->setXyz($positionCenterX, $positionCenterY, $positionCenterZ-$radius);
-            $object->setMaterial(SvMaterials::METAL_2);
+            $object->setMaterial(DXKMaterials::METAL_2);
             $object->setRotate(180, 0, -$alfa);
             $object->setWidth(2*$radius, 0.25, 10);
             $this->objects[] = $object;
@@ -99,10 +99,10 @@ class Submarine extends AbstractLocation
         for ($i = 0; $i < $leng; $i+=$delta)
         {
 
-            $object = new SvObject();
-            $object->setType(SvTypes::BOX);
+            $object = new DXKObject();
+            $object->setType(DXKTypes::BOX);
             $object->setXyz($positionCenterX + $x, $positionCenterY + $y, $positionCenterZ+$i);
-            $object->setMaterial($noWindow ? SvMaterials::METAL_2 : SvMaterials::GLASS_2);
+            $object->setMaterial($noWindow ? DXKMaterials::METAL_2 : DXKMaterials::GLASS_2);
             $object->setRotate(0, 0, -$alfa);
             $object->setWidth(2, 0.25, $delta);
             $this->objects[] = $object;
@@ -119,10 +119,10 @@ class Submarine extends AbstractLocation
         $positionCenterZ = $this->positionCenterZ;
         $leng = $this->size;
         $d = sqrt(($radius*$radius)-pow($this->positionCenterY,2));
-        $object = new SvObject();
-        $object->setType(SvTypes::BOX);
+        $object = new DXKObject();
+        $object->setType(DXKTypes::BOX);
         $object->setXyz($positionCenterX, 0, $positionCenterZ);
-        $object->setMaterial(SvMaterials::METAL_2);
+        $object->setMaterial(DXKMaterials::METAL_2);
         $object->setRotate(0, 0, 0);
         $object->setWidth($d*2, 0.25, $leng);
         $this->objects[] = $object;
@@ -131,18 +131,18 @@ class Submarine extends AbstractLocation
             $delta = $i*$d ;
             $deltaA = $i*180;
 
-            $object = new SvObject();
-            $object->setType(SvTypes::SEMIARCH1);
+            $object = new DXKObject();
+            $object->setType(DXKTypes::SEMIARCH1);
             $object->setXyz($positionCenterX + $d / 2 - $delta, 0, $positionCenterZ + $leng);
-            $object->setMaterial(SvMaterials::METAL_2);
+            $object->setMaterial(DXKMaterials::METAL_2);
             $object->setRotate(0, 0, 0+$deltaA);
             $object->setWidth($d, 0.25, $d);
             $this->objects[] = $object;
 
-            $object = new SvObject();
-            $object->setType(SvTypes::SEMIARCH1);
+            $object = new DXKObject();
+            $object->setType(DXKTypes::SEMIARCH1);
             $object->setXyz($positionCenterX , 0, $positionCenterZ - $d / 2);
-            $object->setMaterial(SvMaterials::METAL_2);
+            $object->setMaterial(DXKMaterials::METAL_2);
             $object->setRotate(0+$deltaA, 90, 0);
             $object->setWidth($d, 0.25, $d);
             $this->objects[] = $object;
@@ -158,26 +158,26 @@ class Submarine extends AbstractLocation
         for ($i = 0;$i<=1;$i++) {
             $delta = $i*$radius ;
             $deltaA = $i*180;
-            $object = new SvObject();
-            $object->setType(SvTypes::BOX);
+            $object = new DXKObject();
+            $object->setType(DXKTypes::BOX);
             $object->setXyz($positionCenterX + $radius / 2 + 0.75 - $delta - 1.5*$i, $positionCenterY - 0.125, $positionCenterZ);
-            $object->setMaterial(SvMaterials::METAL_2);
+            $object->setMaterial(DXKMaterials::METAL_2);
             $object->setRotate(0, 0, 0+$deltaA);
             $object->setWidth($radius - 1.25, 0.25, $leng);
             $this->objects[] = $object;
 
-            $object = new SvObject();
-            $object->setType(SvTypes::SEMIARCH1);
+            $object = new DXKObject();
+            $object->setType(DXKTypes::SEMIARCH1);
             $object->setXyz($positionCenterX + $radius / 2 - $delta, $positionCenterY - 0.125, $positionCenterZ + $leng);
-            $object->setMaterial(SvMaterials::METAL_2);
+            $object->setMaterial(DXKMaterials::METAL_2);
             $object->setRotate(0, 0, 0+$deltaA);
             $object->setWidth($radius, 0.25, $radius);
             $this->objects[] = $object;
 
-            $object = new SvObject();
-            $object->setType(SvTypes::SEMIARCH1);
+            $object = new DXKObject();
+            $object->setType(DXKTypes::SEMIARCH1);
             $object->setXyz($positionCenterX , $positionCenterY - 0.125, $positionCenterZ - $radius / 2);
-            $object->setMaterial(SvMaterials::METAL_2);
+            $object->setMaterial(DXKMaterials::METAL_2);
             $object->setRotate(0+$deltaA, 90, 0);
             $object->setWidth($radius, 0.25, $radius);
             $this->objects[] = $object;
@@ -192,10 +192,10 @@ class Submarine extends AbstractLocation
         $leng = $this->size;
 
         $d = 2.03;
-        $object = new SvObject();
-        $object->setType(SvTypes::EGG1);
+        $object = new DXKObject();
+        $object->setType(DXKTypes::EGG1);
         $object->setXyz($positionCenterX, $positionCenterY, $positionCenterZ+$leng);
-        $object->setMaterial(SvMaterials::METAL_2);
+        $object->setMaterial(DXKMaterials::METAL_2);
         $object->setRotate(0, 0, 0);
         $object->setWidth($radius*$d, $radius*$d, $radius*$d);
         $this->objects[] = $object;
@@ -206,17 +206,17 @@ class Submarine extends AbstractLocation
 
         $object = clone $object;
         $object->setRotate(0,0,90);
-        $object->setMaterial(SvMaterials::GLASS_2);
+        $object->setMaterial(DXKMaterials::GLASS_2);
         $this->objects[] = $object;
 
         $object = clone $object;
         $object->setRotate(0,-90,90);
         $this->objects[] = $object;
         // зад
-        $object = new SvObject();
-        $object->setType(SvTypes::EGG1);
+        $object = new DXKObject();
+        $object->setType(DXKTypes::EGG1);
         $object->setXyz($positionCenterX, $positionCenterY, $positionCenterZ);
-        $object->setMaterial(SvMaterials::METAL_2);
+        $object->setMaterial(DXKMaterials::METAL_2);
         $object->setRotate(0, 90, 0);
         $object->setWidth($radius*$d, $radius*$d, $radius*$d);
         $this->objects[] = $object;
@@ -242,70 +242,70 @@ class Submarine extends AbstractLocation
 
         $leng = $this->size;
 
-        $object = new SvObject();
-        $object->setType(SvTypes::BOX);
+        $object = new DXKObject();
+        $object->setType(DXKTypes::BOX);
         $object->setXyz($positionCenterX + $x, $positionCenterY + $y, $positionCenterZ);
-        $object->setMaterial(SvMaterials::METAL_2);
+        $object->setMaterial(DXKMaterials::METAL_2);
         $object->setRotate(0, 0, -$alfa);
         $object->setWidth(2, 0.25, $leng/2-5);
         $this->objects[] = $object;
 
-        $object = new SvObject();
-        $object->setType(SvTypes::BOX);
+        $object = new DXKObject();
+        $object->setType(DXKTypes::BOX);
         $object->setXyz($positionCenterX + $x, $positionCenterY + $y, $positionCenterZ+$leng/2+7);
-        $object->setMaterial(SvMaterials::METAL_2);
+        $object->setMaterial(DXKMaterials::METAL_2);
         $object->setRotate(0, 0, -$alfa);
         $object->setWidth(2, 0.25, $leng/2-7);
         $this->objects[] = $object;
         if ($alfa == 0) {
             //труба
-            $object = new SvObject();
-            $object->setType(SvTypes::TUBE);
+            $object = new DXKObject();
+            $object->setType(DXKTypes::TUBE);
             $object->setXyz($positionCenterX + $x, $positionCenterY + $y+6, $positionCenterZ+$leng/2+1);
-            $object->setMaterial(SvMaterials::METAL_2);
+            $object->setMaterial(DXKMaterials::METAL_2);
             $object->setRotate(90, 0, 0);
             $object->setWidth(4.25, 20, 6);
             $this->objects[] = $object;
 
             //верхушечка
-            $object = new SvObject();
-            $object->setType(SvTypes::SEMIARCH1);
+            $object = new DXKObject();
+            $object->setType(DXKTypes::SEMIARCH1);
             $object->setXyz($positionCenterX + $x+0.5, $positionCenterY + $y+6-0.125, $positionCenterZ+$leng/2+2.7);
-            $object->setMaterial(SvMaterials::METAL_2);
+            $object->setMaterial(DXKMaterials::METAL_2);
             $object->setRotate(0, 0, 0);
             $object->setWidth(4.8/2, 0.25, 7);
             $this->objects[] = $object;
 
-            $object = new SvObject();
-            $object->setType(SvTypes::SEMIARCH1);
+            $object = new DXKObject();
+            $object->setType(DXKTypes::SEMIARCH1);
             $object->setXyz($positionCenterX + $x-0.5, $positionCenterY + $y+6-0.125, $positionCenterZ+$leng/2+2.7);
-            $object->setMaterial(SvMaterials::METAL_2);
+            $object->setMaterial(DXKMaterials::METAL_2);
             $object->setRotate(0, 0, 180);
             $object->setWidth(4.8/2, 0.25, 7);
             $this->objects[] = $object;
 
-            $object = new SvObject();
-            $object->setType(SvTypes::SEMIARCH1);
+            $object = new DXKObject();
+            $object->setType(DXKTypes::SEMIARCH1);
             $object->setXyz($positionCenterX + $x-0.5, $positionCenterY + $y+6-0.125, $positionCenterZ+$leng/2-2.7);
-            $object->setMaterial(SvMaterials::METAL_2);
+            $object->setMaterial(DXKMaterials::METAL_2);
             $object->setRotate(0, 180, 0);
             $object->setWidth(4.8/2, 0.25, 5);
             $this->objects[] = $object;
 
-            $object = new SvObject();
-            $object->setType(SvTypes::SEMIARCH1);
+            $object = new DXKObject();
+            $object->setType(DXKTypes::SEMIARCH1);
             $object->setXyz($positionCenterX + $x+0.5, $positionCenterY + $y+6-0.125, $positionCenterZ+$leng/2-2.7);
-            $object->setMaterial(SvMaterials::METAL_2);
+            $object->setMaterial(DXKMaterials::METAL_2);
             $object->setRotate(0, 180, 180);
             $object->setWidth(4.8/2, 0.25, 5);
             $this->objects[] = $object;
 
             //лестница
             for ($height = 0; $height < 14; $height++) {
-                $object = new SvObject();
-                $object->setType(SvTypes::STAIR2);
+                $object = new DXKObject();
+                $object->setType(DXKTypes::STAIR2);
                 $object->setXyz($positionCenterX + $x, $positionCenterY + $y+6 - $height*2, $positionCenterZ+$leng/2-2.7+ $height*2);
-                $object->setMaterial(SvMaterials::METAL_2);
+                $object->setMaterial(DXKMaterials::METAL_2);
                 $object->setRotate(0, 0, 0);
                 $object->setWidth(3.2, 1, 1);
                 $this->objects[] = $object;

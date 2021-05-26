@@ -1,7 +1,7 @@
 <?php
 namespace companies\KatyaMercer;
 
-use KatyaMercer\SvGroup;
+use KatyaMercer\DXKGroup;
 
 class AbstractLocation
 {
@@ -22,8 +22,8 @@ class AbstractLocation
         $this->size = $size;
     }
     
-    public function drawOnScene(\KatyaMercer\SvScene $scene, $toGroup = false) {
-        $group = new SvGroup();
+    public function drawOnScene(\KatyaMercer\DXKScene $scene, $toGroup = false) {
+        $group = new DXKGroup();
         foreach($this->objects as $object) {
             if ($toGroup) {
                 $group->addObject($object);

@@ -2,10 +2,10 @@
 namespace companies\KatyaMercer;
 
 use companies\KatyaMercer\AbstractLocation;
-use KatyaMercer\SvMaterials;
-use KatyaMercer\SvObject;
-use KatyaMercer\SvScene;
-use KatyaMercer\SvTypes;
+use KatyaMercer\DXKMaterials;
+use KatyaMercer\DXKObject;
+use KatyaMercer\DXKScene;
+use KatyaMercer\DXKTypes;
 
 /**
  * runner companies\KatyaMercer\MZ
@@ -128,17 +128,17 @@ class MZ extends AbstractLocation
         }
         return $r;
     }
-    public function draw3dx(SvScene $scene)
+    public function draw3dx(DXKScene $scene)
     {
-//        $obj = new SvObject();
-//        $obj->setType(SvTypes::BOX);
+//        $obj = new DXKObject();
+//        $obj->setType(DXKTypes::BOX);
 //        $obj->setWidth($this->n*10+40,0.4,$this->n*10+40);
 //        $obj->setXyz($this->n*10/2+20, 20, 0);
 //        $obj->setColor(0,1,rand(1,100)/100);
 //        $scene->addObject($obj);
 
-        $obj = new SvObject();
-        $obj->setType(SvTypes::TREE1);
+        $obj = new DXKObject();
+        $obj->setType(DXKTypes::TREE1);
         $obj->setWidth(1,1,1);
         $obj->setXyz($this->n*10+40, 0, $this->n*10+20);
         $obj->setRotate(270,0,0);
@@ -149,15 +149,15 @@ class MZ extends AbstractLocation
         foreach ($matrix as $i => $submatrix) {
             foreach ($submatrix as $j => $element) {
                 if ($element == 0) {
-                    $obj = new SvObject();
-                    $obj->setType(SvTypes::BOX);
+                    $obj = new DXKObject();
+                    $obj->setType(DXKTypes::BOX);
                     $obj->setWidth(10,4,10);
                     $obj->setXyz($i*10, 0, $j*10);
                     $obj->setColor(rand(1,100)/100,rand(1,100)/100,rand(1,100)/100);
                     $scene->addObject($obj);
                 } else {
-                    $obj = new SvObject();
-                    $obj->setType(SvTypes::LIGHTP);
+                    $obj = new DXKObject();
+                    $obj->setType(DXKTypes::LIGHTP);
                     $obj->setWidth(1,4,1);
                     $obj->setXyz($i*10, 10, $j*10);
                     $obj->setRotate(270,0,0);
@@ -170,12 +170,12 @@ class MZ extends AbstractLocation
     }
     public function run()
     {
-        $scene = new \KatyaMercer\SvScene();
+        $scene = new \KatyaMercer\DXKScene();
 
         $dr=  new DefRespawn();
         $dr->setPos(0,0,-100);
         $dr->setSize(1000);
-        $dr->generate(SvMaterials::SAND);
+        $dr->generate(DXKMaterials::SAND);
         $dr->drawOnScene($scene);
 
         $m = new MZ();

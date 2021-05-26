@@ -51,19 +51,19 @@ If you see some problem, set me pull request
 
 Examples:
 
-$sfApp = new SvLoader(); // init project
+$sfApp = new DXKLoader(); // init project
 
-$scene = new SvScene(); // create scene
+$scene = new DXKScene(); // create scene
 
-$floor = new SvObject(); // create object
+$floor = new DXKObject(); // create object
 
 $floor->setXyz(0, -0.1, -100); // at coordinates
 
 $floor->setWidth(100, 0.2, 150); //with width
 
-$floor->setMaterial(SvMaterials::GRASS_1); // texture grass
+$floor->setMaterial(DXKMaterials::GRASS_1); // texture grass
 
-$floor->setType(SvTypes::BOX); // box type
+$floor->setType(DXKTypes::BOX); // box type
 
 $scene->addObject($floor); // add to scene
 
@@ -71,4 +71,4 @@ $scene->setOceanlevel(-10); // ocean level
 
 $scene->setRespawn(-20,0,-20); //respawn coords
 
-$scene->setWeather(SvWeathers::NIGHT); // weather
+$scene->setWeather(DXKWeathers::NIGHT); // weather

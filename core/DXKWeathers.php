@@ -4,10 +4,10 @@ namespace KatyaMercer;
 /**
  * Погодfа
  *
- * Class SvWeathers
+ * Class DXKWeathers
  * @package KatyaMercer
  */
-class SvWeathers
+class DXKWeathers
 {
     const DAY = 'Day';
     const SUNRISE = 'Sunrise';

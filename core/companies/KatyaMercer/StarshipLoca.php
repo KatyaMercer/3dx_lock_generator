@@ -3,11 +3,11 @@
 namespace companies\KatyaMercer;
 
 use companies\KatyaMercer\Sh\StarShip;
-use KatyaMercer\SvMaterials;
-use KatyaMercer\SvObject;
-use KatyaMercer\SvScene;
-use KatyaMercer\SvTypes;
-use KatyaMercer\SvWeathers;
+use KatyaMercer\DXKMaterials;
+use KatyaMercer\DXKObject;
+use KatyaMercer\DXKScene;
+use KatyaMercer\DXKTypes;
+use KatyaMercer\DXKWeathers;
 
 /**
  * runner companies\KatyaMercer\StarshipLoca
@@ -21,12 +21,12 @@ class StarshipLoca
 {
     public function run()
     {
-        $scene = new SvScene();
+        $scene = new DXKScene();
 
         $d = new DefRespawn();
         $d->setPos(0,-500,0);
         $d->setSize(2);
-        $d->generate(SvMaterials::WALLPAPER_1);
+        $d->generate(DXKMaterials::WALLPAPER_1);
         $d->drawOnScene($scene);
 
         $rw = new StarShip();
@@ -41,7 +41,7 @@ class StarshipLoca
 
 //        RotateLoc::xToY($scene);
         $scene->setOceanlevel(-1000);
-        $scene->setWeather(SvWeathers::NIGHT);
+        $scene->setWeather(DXKWeathers::NIGHT);
 
         file_put_contents('astar.world', $scene->dump());
     }

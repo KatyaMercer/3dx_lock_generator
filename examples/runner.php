@@ -1,7 +1,7 @@
 <?php
 ini_set('memory_limit', '1000000M');
-use \KatyaMercer\SvLoader;
-include '../core/SvLoader.php';
-$sfApp = new SvLoader();
+use \KatyaMercer\DXKLoader;
+include '../core/DXKLoader.php';
+$sfApp = new DXKLoader();
 $class = $argv[1];
 (new $class())->run();

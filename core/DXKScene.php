@@ -3,16 +3,16 @@ namespace KatyaMercer;
 /**
  * Main object what will save to file
  *
- * Class SvScene
+ * Class DXKScene
  *
  * @package KatyaMercer
  */
-class SvScene
+class DXKScene
 {
     protected $scene;
 
     /**
-     * SvScene constructor.
+     * DXKScene constructor.
      */
     public function __construct()
     {
@@ -22,9 +22,9 @@ class SvScene
     /**
      * add object to scene
      *
-     * @param SvObject $object
+     * @param DXKObject $object
      */
-    public function addObject(SvObject $object) 
+    public function addObject(DXKObject $object)
     {
             $this->scene->objects[] = $object->getObject();
     }
@@ -34,7 +34,7 @@ class SvScene
         $this->scene->objects = [];
     }
 
-    public function addGroup(SvGroup $group)
+    public function addGroup(DXKGroup $group)
     {
         $this->scene->objects[] = $group->getGroup();
     }
@@ -61,9 +61,9 @@ class SvScene
     /**
      * merge 2 scenes (for example from file)
      *
-     * @param SvScene $scene
+     * @param DXKScene $scene
      */
-    public function merge(SvScene $scene)
+    public function merge(DXKScene $scene)
     {
         $this->scene->objects = array_merge($this->scene->objects, $scene->scene->objects);
     }

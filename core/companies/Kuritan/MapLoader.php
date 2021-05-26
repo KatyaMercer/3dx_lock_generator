@@ -1,8 +1,8 @@
 <?php
 namespace companies\Kuritan;
-use \KatyaMercer\SvMaterials;
-use \KatyaMercer\SvObject;
-use \KatyaMercer\SvTypes;
+use \KatyaMercer\DXKMaterials;
+use \KatyaMercer\DXKObject;
+use \KatyaMercer\DXKTypes;
 
 /**
  * It is some refactoring of Kuritan code for upload static map to object

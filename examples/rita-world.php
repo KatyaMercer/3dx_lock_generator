@@ -2,15 +2,15 @@
 ini_set('memory_limit', '1000000M');
 
 use companies\KatyaMercer\RitaWorld;
-use \KatyaMercer\SvLoader;
-use \KatyaMercer\SvScene;
-use \KatyaMercer\SvObject;
-use \KatyaMercer\SvMaterials;
-use \KatyaMercer\SvTypes;
-use \KatyaMercer\SvWeathers;
-include '../core/SvLoader.php';
-$sfApp = new SvLoader();
-$scene = new SvScene();
+use \KatyaMercer\DXKLoader;
+use \KatyaMercer\DXKScene;
+use \KatyaMercer\DXKObject;
+use \KatyaMercer\DXKMaterials;
+use \KatyaMercer\DXKTypes;
+use \KatyaMercer\DXKWeathers;
+include '../core/DXKLoader.php';
+$sfApp = new DXKLoader();
+$scene = new DXKScene();
 $sq = 50;
 $dr = new \companies\KatyaMercer\DefRespawn();
 $dr->setPos(-$sq,-0.2,-$sq*3);
@@ -25,6 +25,6 @@ $rw->setSize(130);
 $rw->generate();
 $rw->drawOnScene($scene);
 
-$scene->setWeather(SvWeathers::DAY);
+$scene->setWeather(DXKWeathers::DAY);
 
 file_put_contents('aa.world', $scene->dump());

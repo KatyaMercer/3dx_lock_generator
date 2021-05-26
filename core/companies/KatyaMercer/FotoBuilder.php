@@ -1,8 +1,8 @@
 <?php
 namespace companies\KatyaMercer;
-use \KatyaMercer\SvMaterials;
-use \KatyaMercer\SvObject;
-use \KatyaMercer\SvTypes;
+use \KatyaMercer\DXKMaterials;
+use \KatyaMercer\DXKObject;
+use \KatyaMercer\DXKTypes;
 class FotoBuilder extends AbstractLocation
 {
     /**
@@ -24,12 +24,12 @@ class FotoBuilder extends AbstractLocation
                 $r = $colors['red'];
                 $g = $colors['green'];
                 $b = $colors['blue'];
-                $object = new SvObject();
-//                $object->setType(SvTypes::BOX);
-//                $object->setWidth($coef,$coef,$coef);
+                $object = new DXKObject();
+                $object->setType(DXKTypes::BOX);
+                $object->setWidth($coef,$coef,$coef);
 
-                $object->setType(SvTypes::SPHERE);
-                $object->setWidth($coef*2,$coef*2,$coef*2);
+//                $object->setType(DXKTypes::SPHERE);
+//                $object->setWidth($coef*2,$coef*2,$coef*2);
 
                 $object->delMaterial();
                 $object->setColor(round($r/256,2), round($g/256, 2), round($b/256,2) );

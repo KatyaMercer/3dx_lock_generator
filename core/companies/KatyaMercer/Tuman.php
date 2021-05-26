@@ -1,8 +1,8 @@
 <?php
 namespace companies\KatyaMercer;
-use \KatyaMercer\SvMaterials;
-use \KatyaMercer\SvObject;
-use \KatyaMercer\SvTypes;
+use \KatyaMercer\DXKMaterials;
+use \KatyaMercer\DXKObject;
+use \KatyaMercer\DXKTypes;
 class Tuman extends AbstractLocation{
      
     public function generate($ovjCount) {
@@ -11,8 +11,8 @@ class Tuman extends AbstractLocation{
         $positionCenterZ = $this->positionCenterZ;
         $size = $this->size;
         for($i = 0;$i<$ovjCount;$i++) {
-            $object = new SvObject();
-            $object->setType(SvTypes::SMOKE1);
+            $object = new DXKObject();
+            $object->setType(DXKTypes::SMOKE1);
             $object->setRotate(0, 180, rand(0,360));
             $width = rand(10,20);
             $object->setWidth($width, $width, $width);

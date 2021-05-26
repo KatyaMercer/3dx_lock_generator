@@ -6,10 +6,10 @@ namespace KatyaMercer;
  * constants wooden or stone or from skin?
  * Страшная дичь. Когда буду под медицинскими препаратами надо будет прописать в комментариях вменяемые названия
  *
- * Class SvMaterials
+ * Class DXKMaterials
  * @package KatyaMercer
  */
-class SvMaterials
+class DXKMaterials
 {
     // effects
     const ILLUM_FLAT = 'Illum FLAT';

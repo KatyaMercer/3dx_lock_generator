@@ -1,9 +1,9 @@
 <?php
 namespace companies\KatyaMercer\Sh;
 
-use KatyaMercer\SvMaterials;
-use KatyaMercer\SvObject;
-use KatyaMercer\SvTypes;
+use KatyaMercer\DXKMaterials;
+use KatyaMercer\DXKObject;
+use KatyaMercer\DXKTypes;
 
 class SpaceSubroom extends AbstractSubroom
 {
@@ -30,12 +30,12 @@ class SpaceSubroom extends AbstractSubroom
             $color = [rand(1000,255000)/255,rand(1000,255000)/255, rand(1000,255000)/255];
             $width = rand(1,5);
 
-            $object = new SvObject();
+            $object = new DXKObject();
 
-            $object->setType(SvTypes::SPHERE);
+            $object->setType(DXKTypes::SPHERE);
             $object->setXyz($positionCenterX+$ax, $positionCenterY+$ay, $positionCenterZ+$az);
             $object->setColor($color[0], $color[0], $color[0]);
-            $object->setMaterial(SvMaterials::WALLPAPER_1);
+            $object->setMaterial(DXKMaterials::WALLPAPER_1);
             $object->setWidth($width, $width, $width);
             $this->starShip->objects[] = $object;
 

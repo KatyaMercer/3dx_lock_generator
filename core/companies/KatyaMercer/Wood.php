@@ -1,8 +1,8 @@
 <?php
 namespace companies\KatyaMercer;
-use \KatyaMercer\SvMaterials;
-use \KatyaMercer\SvObject;
-use \KatyaMercer\SvTypes;
+use \KatyaMercer\DXKMaterials;
+use \KatyaMercer\DXKObject;
+use \KatyaMercer\DXKTypes;
 class Wood extends AbstractLocation{
 
     public function addRocks($ovjCount)
@@ -12,15 +12,15 @@ class Wood extends AbstractLocation{
         $positionCenterZ = $this->positionCenterZ;
         $size = $this->size;
         $array = [
-            SvTypes::STONE_33_G_COLORED,
-            SvTypes::STONE_33_SN_COLORED,
-            SvTypes::STONE_33_SA_COLORED,
-            SvTypes::STONE_10_G_COLORED,
-            SvTypes::STONE_10_SA_COLORED,
-            SvTypes::STONE_33_COLORED,
+            DXKTypes::STONE_33_G_COLORED,
+            DXKTypes::STONE_33_SN_COLORED,
+            DXKTypes::STONE_33_SA_COLORED,
+            DXKTypes::STONE_10_G_COLORED,
+            DXKTypes::STONE_10_SA_COLORED,
+            DXKTypes::STONE_33_COLORED,
         ];
         for($i = 0;$i<$ovjCount;$i++) {
-            $object = new SvObject();
+            $object = new DXKObject();
             $object->setType($array[array_rand($array)]);
             $object->setRotate(rand(1, 360), rand(1, 360), rand(1, 360));
             $width = rand(1, 2);
@@ -37,19 +37,19 @@ class Wood extends AbstractLocation{
         $positionCenterZ = $this->positionCenterZ;
         $size = $this->size;
         $array = [
-            SvTypes::TREE1,
-            SvTypes::TREE2,
-            SvTypes::TREE3,
-            SvTypes::TREE4,
-            SvTypes::TREE5,
-//            SvTypes::TREE6,
-            SvTypes::TREE7,
-            SvTypes::BUSH1,
-            SvTypes::BUSH1,
-            SvTypes::BUSH2,
+            DXKTypes::TREE1,
+            DXKTypes::TREE2,
+            DXKTypes::TREE3,
+            DXKTypes::TREE4,
+            DXKTypes::TREE5,
+//            DXKTypes::TREE6,
+            DXKTypes::TREE7,
+            DXKTypes::BUSH1,
+            DXKTypes::BUSH1,
+            DXKTypes::BUSH2,
         ];
         for($i = 0; $i<$objectCount; $i++) {
-            $object = new SvObject();
+            $object = new DXKObject();
             $type = $array[array_rand($array)];
             $object->setType($type);
             $object->setRotate(270, rand(1,360), 0);
@@ -65,8 +65,8 @@ class Wood extends AbstractLocation{
             $object->setXyz($x, $positionCenterY, $y);
             $this->objects[] = $object;
 
-            $object = new SvObject();
-            $object->setType(SvTypes::GRASS1);
+            $object = new DXKObject();
+            $object->setType(DXKTypes::GRASS1);
             $object->setRotate(270, rand(1,360), 0);
             $object->setWidth(rand(2,10), rand(2,10), rand(1,5));
             $object->setXyz($x, $positionCenterY, $y);

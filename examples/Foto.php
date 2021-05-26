@@ -1,25 +1,26 @@
 <?php
 ini_set('memory_limit', '1000000M');
-use \KatyaMercer\SvLoader;
-use \KatyaMercer\SvScene;
-use \KatyaMercer\SvObject;
-use \KatyaMercer\SvMaterials;
-use \KatyaMercer\SvTypes;
-use \KatyaMercer\SvWeathers;
-include '../core/SvLoader.php';
-$sfApp = new SvLoader();
-$scene = new SvScene();
+use \KatyaMercer\DXKLoader;
+use \KatyaMercer\DXKScene;
+use \KatyaMercer\DXKObject;
+use \KatyaMercer\DXKMaterials;
+use \KatyaMercer\DXKTypes;
+use \KatyaMercer\DXKWeathers;
+include '../core/DXKLoader.php';
+$sfApp = new DXKLoader();
+$scene = new DXKScene();
 
-$image = '2.bmp';
-$obj = new \companies\KatyaMercer\FotoBuilder();
-$obj->generate($image);
+$image = '1.bmp';
+//$obj = new \companies\KatyaMercer\FotoBuilder();
+$obj = new \companies\KatyaMercer\FotoBuilderExtended();
+$obj->generate($image, 50, 200);
 $obj->drawOnScene($scene, true);
-$scene->setWeather(SvWeathers::DAY);
+$scene->setWeather(DXKWeathers::DAY);
 
 //$image = '1.bmp';
 //$obj = new \companies\KatyaMercer\FotoBuilder();
 //$obj->generate($image, 150,300, 1);
 //$obj->drawOnScene($scene, true);
-//$scene->setWeather(SvWeathers::DAY);
+//$scene->setWeather(DXKWeathers::DAY);
 ////$scene->setAmbient(0,0,0,0,0);
-file_put_contents('ira.world', $scene->dump());
+file_put_contents('ira2.world', $scene->dump());

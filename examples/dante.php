@@ -1,11 +1,11 @@
 <?php
 ini_set('memory_limit', '1000000M');
-use \KatyaMercer\SvLoader;
-use \KatyaMercer\SvScene;
+use \KatyaMercer\DXKLoader;
+use \KatyaMercer\DXKScene;
 
-include '../core/SvLoader.php';
-$sfApp = new SvLoader();
-$scene = new SvScene();//сцена
+include '../core/DXKLoader.php';
+$sfApp = new DXKLoader();
+$scene = new DXKScene();//сцена
 $sq = 100;//это типа длина стороны квадрата
 $dr = new \companies\KatyaMercer\DefRespawn();//создаю платформу (можно посмотреть соответствующий файл)
 $dr->setPos(0,0,-$sq);//устанавливаю координаты где рисовать (сама не помню, координаты чего)

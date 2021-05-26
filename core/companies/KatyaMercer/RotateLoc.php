@@ -2,19 +2,19 @@
 
 namespace companies\KatyaMercer;
 
-use KatyaMercer\SvMaterials;
-use KatyaMercer\SvObject;
-use KatyaMercer\SvScene;
-use KatyaMercer\SvTypes;
-use KatyaMercer\SvWeathers;
+use KatyaMercer\DXKMaterials;
+use KatyaMercer\DXKObject;
+use KatyaMercer\DXKScene;
+use KatyaMercer\DXKTypes;
+use KatyaMercer\DXKWeathers;
 
 /**
  * @package companies\KatyaMercer
  *
  */
-class RotateLoc extends SvScene
+class RotateLoc extends DXKScene
 {
-    public static function xToY(SvScene $scene)
+    public static function xToY(DXKScene $scene)
     {
 //        print_r($scene->scene->objects[0]);
         foreach($scene->scene->objects as &$object) {

@@ -1,8 +1,8 @@
 <?php
 namespace companies\KatyaMercer;
-use \KatyaMercer\SvMaterials;
-use \KatyaMercer\SvObject;
-use \KatyaMercer\SvTypes;
+use \KatyaMercer\DXKMaterials;
+use \KatyaMercer\DXKObject;
+use \KatyaMercer\DXKTypes;
 
 /**
  * This class I dedicate to dear Rita
@@ -15,36 +15,36 @@ class RitaWorld extends AbstractLocation{
     private function getRandStone()
     {
         $a = [
-            SvTypes::STONE_10_SA_COLORED,
-            SvTypes::STONE_10_G_COLORED,
-            SvTypes::STONE_10_COLORED,
-            SvTypes::STONE_33_SA_COLORED,
-            SvTypes::STONE_33_SN_COLORED,
-            SvTypes::STONE_33_G_COLORED
+            DXKTypes::STONE_10_SA_COLORED,
+            DXKTypes::STONE_10_G_COLORED,
+            DXKTypes::STONE_10_COLORED,
+            DXKTypes::STONE_33_SA_COLORED,
+            DXKTypes::STONE_33_SN_COLORED,
+            DXKTypes::STONE_33_G_COLORED
             ];
         return $a[array_rand($a)];
     }
 
-    public function generateTree($x, $y, $z, $tree = SvTypes::TREE3)
+    public function generateTree($x, $y, $z, $tree = DXKTypes::TREE3)
     {
-        $obj = new SvObject();
+        $obj = new DXKObject();
         $obj->setType($tree);
         $obj->setXyz($x,$y,$z);
         $obj->setRotate(-90,180,0);
         $obj->setWidth(1,1,1);
         $this->objects[] = $obj;
 
-        $obj = new SvObject();
-        $obj->setType(SvTypes::CYLINDER);
-        $obj->setMaterial(SvMaterials::GRASS_1);
+        $obj = new DXKObject();
+        $obj->setType(DXKTypes::CYLINDER);
+        $obj->setMaterial(DXKMaterials::GRASS_1);
         $obj->setXyz($x,$y,$z);
         $obj->setRotate(-90,180,0);
         $obj->setWidth(1.3,1.3,1.3);
         $this->objects[] = $obj;
 
         $obj= clone $obj;
-        $obj->setType(SvTypes::TUBE);
-        $obj->setMaterial(SvMaterials::BRICK_3);
+        $obj->setType(DXKTypes::TUBE);
+        $obj->setMaterial(DXKMaterials::BRICK_3);
         $obj->setWidth(1.4,1.4,1.4);
 
         $this->objects[] = $obj;
@@ -63,8 +63,8 @@ class RitaWorld extends AbstractLocation{
                 if ($le> 10 and $le < $leng-10) {
                     $x = $fromRadius/2*sin(deg2rad($alf));
                     $y = $fromRadius/2*cos(deg2rad($alf));
-                    $object = new SvObject();
-                    $object->setType(SvTypes::LIGHTP);
+                    $object = new DXKObject();
+                    $object->setType(DXKTypes::LIGHTP);
                     $object->setXyz($positionCenterX+$x,$positionCenterY+$y,$positionCenterZ+$le);
                     $object->setRotate(0, 0, 180);
                     $object->setWidth(2, 2, 2);
@@ -86,7 +86,7 @@ class RitaWorld extends AbstractLocation{
                 for ($rad = $fradT; $rad < $toRadius; $rad++) {
                     $x = $rad*sin(deg2rad($alf));
                     $y = $rad*cos(deg2rad($alf));
-                    $obj = new SvObject();
+                    $obj = new DXKObject();
                     $obj->setType($this->getRandStone());
                     $obj->setXyz($positionCenterX+$x,$positionCenterY+$y,$positionCenterZ+$le);
                     $obj->setRotate(rand(0,360),rand(0,360),rand(0,360));
@@ -98,8 +98,8 @@ class RitaWorld extends AbstractLocation{
             if ($le < $leng-20 && $le > 10 ) {
 
 
-                $object = new SvObject();
-                $object->setType(SvTypes::LIGHTP);
+                $object = new DXKObject();
+                $object->setType(DXKTypes::LIGHTP);
                 $object->setXyz($positionCenterX + rand(-$toRadius / 3, $toRadius / 3), $positionCenterY + $fromRadius / 4, $positionCenterZ + $le);
                 $object->setRotate(0, 0, 180);
                 $object->setWidth(2, 2, 2);
@@ -109,7 +109,7 @@ class RitaWorld extends AbstractLocation{
 
             if ($needDrawDown) {
                 for ($x = -$fromRadius; $x < $fromRadius; $x += 5) {
-                    $obj = new SvObject();
+                    $obj = new DXKObject();
                     $obj->setType($this->getRandStone());
                     $obj->setXyz($positionCenterX + $x + rand(-5, 5), $positionCenterY, $positionCenterZ + $le + rand(-5, 5));
                     $obj->setRotate(rand(0, 360), rand(0, 360), rand(0, 360));
@@ -121,9 +121,9 @@ class RitaWorld extends AbstractLocation{
 
 
         if ($needDrawDown) {
-            $obj = new SvObject();
-            $obj->setType(SvTypes::BOX);
-            $obj->setMaterial(SvMaterials::STONES_3);
+            $obj = new DXKObject();
+            $obj->setType(DXKTypes::BOX);
+            $obj->setMaterial(DXKMaterials::STONES_3);
             $obj->setXyz($positionCenterX,$positionCenterY,$positionCenterZ);
             $obj->setRotate(0,0,0);
             $obj->setWidth($fromRadius*2,0.1,$leng);
@@ -144,61 +144,61 @@ class RitaWorld extends AbstractLocation{
         $def->setHeight(10);
         $def->setSize(30);
         $def->setPos($positionCenterX,$positionCenterY+4,$positionCenterZ+$leng/4-15);
-        $def->generate(SvMaterials::BRICK_3);
+        $def->generate(DXKMaterials::BRICK_3);
         $this->objects = array_merge($this->objects, $def->objects);
 
         $positionCenterY = $positionCenterY + 0.1;
 
-        $bed = new SvObject();
+        $bed = new DXKObject();
         $bed->setXyz($positionCenterX,$positionCenterY+4,$positionCenterZ+$leng/4);
         $bed->setRotate(270,45,0);
-        $bed->setType(SvTypes::BED3);
+        $bed->setType(DXKTypes::BED3);
         $this->objects[] = $bed;
 
-        $bed = new SvObject();
+        $bed = new DXKObject();
         $bed->setXyz($positionCenterX-4,$positionCenterY+4,$positionCenterZ+$leng/4);
         $bed->setRotate(270,-45,0);
-        $bed->setType(SvTypes::SOFA_4);
+        $bed->setType(DXKTypes::SOFA_4);
         $this->objects[] = $bed;
 
-        $object = new SvObject();
-//        $object->setMaterial(SvMaterials::BRICK_3);
-        $object->setType(SvTypes::WALL_PH);
+        $object = new DXKObject();
+//        $object->setMaterial(DXKMaterials::BRICK_3);
+        $object->setType(DXKTypes::WALL_PH);
         $object->setXyz($positionCenterX-4,$positionCenterY+4,$positionCenterZ+$leng/4-1);
         $object->setRotate(270,-45,0);
 //        $object->setWidth(1, 1, 1);
         $this->objects[] = $object;
 
-        $bed = new SvObject();
+        $bed = new DXKObject();
         $bed->setXyz($positionCenterX-2,$positionCenterY+4,$positionCenterZ+$leng/4+2);
         $bed->setRotate(270,-45,0);
-        $bed->setType(SvTypes::POLE);
+        $bed->setType(DXKTypes::POLE);
         $this->objects[] = $bed;
 
-        $bed = new SvObject();
+        $bed = new DXKObject();
         $bed->setXyz($positionCenterX-3,$positionCenterY+4,$positionCenterZ+$leng/4+5);
         $bed->setRotate(270,90,0);
-        $bed->setType(SvTypes::FUTON_SOFA);
+        $bed->setType(DXKTypes::FUTON_SOFA);
         $this->objects[] = $bed;
 
-        $bed = new SvObject();
+        $bed = new DXKObject();
         $bed->setXyz($positionCenterX,$positionCenterY+4,$positionCenterZ+$leng/4+4);
         $bed->setRotate(270,0,0);
-        $bed->setType(SvTypes::CHAIR_GIOVANNETTI_RED);
+        $bed->setType(DXKTypes::CHAIR_GIOVANNETTI_RED);
         $this->objects[] = $bed;
 
-        $object = new SvObject();
-        $object->setType(SvTypes::VEDRO);
+        $object = new DXKObject();
+        $object->setType(DXKTypes::VEDRO);
         $object->setXyz($positionCenterX+12, $positionCenterZ+4, $positionCenterY+$leng/4+2);
         $object->setRotate(270,180,0);
         $object->setWidth(1, 1, 1);
         $this->objects[] = $object;
 
 
-        $this->generateTree($positionCenterX+14,$positionCenterY+4,$positionCenterZ+$leng/4+7, SvTypes::TREE3);
-        $this->generateTree($positionCenterX-14,$positionCenterY+4,$positionCenterZ+$leng/4+7, SvTypes::TREE7);
-        $this->generateTree($positionCenterX-11,$positionCenterY+4,$positionCenterZ+$leng/4-11, SvTypes::TREE1);
-        $this->generateTree($positionCenterX,$positionCenterY+4,$positionCenterZ+$leng/4-12, SvTypes::TREE4);
+        $this->generateTree($positionCenterX+14,$positionCenterY+4,$positionCenterZ+$leng/4+7, DXKTypes::TREE3);
+        $this->generateTree($positionCenterX-14,$positionCenterY+4,$positionCenterZ+$leng/4+7, DXKTypes::TREE7);
+        $this->generateTree($positionCenterX-11,$positionCenterY+4,$positionCenterZ+$leng/4-11, DXKTypes::TREE1);
+        $this->generateTree($positionCenterX,$positionCenterY+4,$positionCenterZ+$leng/4-12, DXKTypes::TREE4);
     }
 
 }

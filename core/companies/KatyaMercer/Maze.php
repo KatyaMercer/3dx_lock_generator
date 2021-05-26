@@ -1,8 +1,8 @@
 <?php
 namespace companies\KatyaMercer;
-use \KatyaMercer\SvMaterials;
-use \KatyaMercer\SvObject;
-use \KatyaMercer\SvTypes;
+use \KatyaMercer\DXKMaterials;
+use \KatyaMercer\DXKObject;
+use \KatyaMercer\DXKTypes;
 class Maze extends AbstractLocation{
      
     public function generate() {
@@ -12,9 +12,9 @@ class Maze extends AbstractLocation{
         $size = $this->size;
         for($x = -$size;$x<$size;$x++) {
             for($y = -$size;$y<$size;$y++) {
-                $object = new SvObject();
-                $object->setMaterial(SvMaterials::TILES_1);
-                $object->setType(SvTypes::BOXCH);
+                $object = new DXKObject();
+                $object->setMaterial(DXKMaterials::TILES_1);
+                $object->setType(DXKTypes::BOXCH);
                 $object->setXyz($positionCenterX+$x*2, $positionCenterZ, $positionCenterY+$y*2);
                 
                 

@@ -1,12 +1,17 @@
 <?php
 namespace companies\KatyaMercer\Sh;
 
-use KatyaMercer\SvMaterials;
-use KatyaMercer\SvObject;
-use KatyaMercer\SvTypes;
+use KatyaMercer\DXKMaterials;
+use KatyaMercer\DXKObject;
+use KatyaMercer\DXKTypes;
 
 abstract class AbstractSubroom extends \companies\KatyaMercer\AbstractLocation
 {
+    /**
+     * @var StarShip
+     */
+    protected $starShip;
+
     public function __construct(\companies\KatyaMercer\Sh\StarShip $starShip)
     {
         $this->starShip = $starShip;
@@ -20,34 +25,34 @@ abstract class AbstractSubroom extends \companies\KatyaMercer\AbstractLocation
         $positionCenterZ = $this->starShip->positionCenterZ;
         $leng = $this->starShip->size;
 
-        $object = new SvObject();
-        $object->setType(SvTypes::SEMIARCH1);
+        $object = new DXKObject();
+        $object->setType(DXKTypes::SEMIARCH1);
         $object->setXyz($positionCenterX + $radius/2, $positionCenterY, $positionCenterZ + $l1);
-        $object->setMaterial(SvMaterials::WALLPAPER_1);
+        $object->setMaterial(DXKMaterials::WALLPAPER_1);
         $object->setRotate(-90, 0, 0);
         $object->setWidth($radius, 0.25, $radius);
         $this->starShip->objects[] = $object;
 
-        $object = new SvObject();
-        $object->setType(SvTypes::SEMIARCH1);
+        $object = new DXKObject();
+        $object->setType(DXKTypes::SEMIARCH1);
         $object->setXyz($positionCenterX + $radius/2, $positionCenterY, $positionCenterZ + $l2);
-        $object->setMaterial(SvMaterials::WALLPAPER_1);
+        $object->setMaterial(DXKMaterials::WALLPAPER_1);
         $object->setRotate(-90, 0, 0);
         $object->setWidth($radius, 0.25, $radius);
         $this->starShip->objects[] = $object;
 
-        $object = new SvObject();
-        $object->setType(SvTypes::BOX);
+        $object = new DXKObject();
+        $object->setType(DXKTypes::BOX);
         $object->setXyz($positionCenterX, $positionCenterY + $radius/2 + $this->starShip->plastinaSize/2, $positionCenterZ + $l1);
-        $object->setMaterial(SvMaterials::WALLPAPER_1);
+        $object->setMaterial(DXKMaterials::WALLPAPER_1);
         $object->setRotate(0, 0, 0);
         $object->setWidth(0.25, $radius - $this->starShip->plastinaSize, $l2-$l1);
         $this->starShip->objects[] = $object;
 
-        $object = new SvObject();
-        $object->setType(SvTypes::BOX);
+        $object = new DXKObject();
+        $object->setType(DXKTypes::BOX);
         $object->setXyz($positionCenterX, $positionCenterY+ $this->starShip->plastinaSize/2, $positionCenterZ + $l1);
-        $object->setMaterial(SvMaterials::WATER);
+        $object->setMaterial(DXKMaterials::WATER);
         $object->setRotate(0, 0, 0);
         $object->setColor(0.01, 0.01, 0.01);
         $object->setWidth(0.25, $this->starShip->plastinaSize, $l2-$l1);
@@ -86,10 +91,10 @@ abstract class AbstractSubroom extends \companies\KatyaMercer\AbstractLocation
         ];
         foreach ([$l1, $l2] as $l) {
             foreach ($params as $param) {
-                $object = new SvObject();
-                $object->setType(SvTypes::SEMIARCH2);
+                $object = new DXKObject();
+                $object->setType(DXKTypes::SEMIARCH2);
                 $object->setXyz($param['position'][0], $param['position'][1], $param['position'][2] + $l);
-                $object->setMaterial(SvMaterials::WALLPAPER_1);
+                $object->setMaterial(DXKMaterials::WALLPAPER_1);
                 $object->setRotate($param['rotate'][0], $param['rotate'][1], $param['rotate'][2]);
                 $object->setWidth($param['width'][0], $param['width'][1], $param['width'][2]);
                 $this->starShip->objects[] = $object;
@@ -97,10 +102,10 @@ abstract class AbstractSubroom extends \companies\KatyaMercer\AbstractLocation
         }
 
         if (!isset($options['withoutDoor'])) {
-            $object = new SvObject();
-            $object->setType(SvTypes::EGG2);
+            $object = new DXKObject();
+            $object->setType(DXKTypes::EGG2);
             $object->setXyz($positionCenterX, $positionCenterY, $positionCenterZ + $l1 + ($l2-$l1)/2);
-            $object->setMaterial(SvMaterials::WATER);
+            $object->setMaterial(DXKMaterials::WATER);
             $object->setRotate(-90, -90, 0);
             $object->setWidth(($l2-$l1) * 2, $radius/2, $radius/2);
             $object->setColor(0.01,0.01,0.01);
@@ -113,7 +118,7 @@ abstract class AbstractSubroom extends \companies\KatyaMercer\AbstractLocation
         return $this;
     }
 
-    protected function shineCenter($l1,$l2, $dx = 0)
+    protected function shineCenter($l1,$l2, $dx = 0, $color = null)
     {
         $radius = $this->starShip->getRadius();
         $positionCenterX = $this->starShip->positionCenterX;
@@ -122,11 +127,16 @@ abstract class AbstractSubroom extends \companies\KatyaMercer\AbstractLocation
         $leng = $this->starShip->size;
         $center = ($l2-$l1)/2;
 
-        $object = new SvObject();
-        $object->setType(SvTypes::LIGHTP);
+        $object = new DXKObject();
+        $object->setType(DXKTypes::LIGHTP);
         $object->setXyz($positionCenterX+$dx, $positionCenterY+$radius/2, $positionCenterZ+$l1+$center);
         $object->setRotate(0, 0, 0);
-        $object->setColor(0.4,0.3, 0.3);
+        if ($color) {
+            $object->setColor($color['r'], $color['r'], $color['b']);
+        } else {
+            $object->setColor(0.4,0.3, 0.3);
+        }
+
         $object->setWidth($radius, 0.25, ($l2-$l1)/2);
         $this->starShip->objects[] = $object;
 

@@ -1,8 +1,8 @@
 <?php
 namespace companies\KatyaMercer;
-use \KatyaMercer\SvMaterials;
-use \KatyaMercer\SvObject;
-use \KatyaMercer\SvTypes;
+use \KatyaMercer\DXKMaterials;
+use \KatyaMercer\DXKObject;
+use \KatyaMercer\DXKTypes;
 
 /**
  * This class I dedicate to dear Rita
@@ -16,12 +16,12 @@ class River extends AbstractLocation
     private function getRandStone()
     {
         $a = [
-            SvTypes::STONE_10_SA_COLORED,
-            SvTypes::STONE_10_G_COLORED,
-            SvTypes::STONE_10_COLORED,
-            SvTypes::STONE_33_SA_COLORED,
-            SvTypes::STONE_33_SN_COLORED,
-            SvTypes::STONE_33_G_COLORED
+            DXKTypes::STONE_10_SA_COLORED,
+            DXKTypes::STONE_10_G_COLORED,
+            DXKTypes::STONE_10_COLORED,
+            DXKTypes::STONE_33_SA_COLORED,
+            DXKTypes::STONE_33_SN_COLORED,
+            DXKTypes::STONE_33_G_COLORED
         ];
         return $a[array_rand($a)];
     }
@@ -32,13 +32,13 @@ class River extends AbstractLocation
         $positionCenterY = $this->positionCenterY + 1;
         $positionCenterZ = $this->positionCenterZ;
 
-        $obj = new SvObject();
+        $obj = new DXKObject();
         $obj->setType($this->getRandStone());
         $obj->setXyz($positionCenterX,$positionCenterY,$positionCenterZ-20);
         $obj->setRotate(270, 0,0); // rand(0,360)
         $obj->setWidth(1,15,1);
         $this->objects[] = $obj;
-        $obj = new SvObject();
+        $obj = new DXKObject();
         $obj->setType($this->getRandStone());
         $obj->setXyz($positionCenterX+$this->size,$positionCenterY,$positionCenterZ-20);
         $obj->setRotate(270, 0,0); // rand(0,360)
@@ -76,7 +76,7 @@ class River extends AbstractLocation
             $lxdown = $dx;
             $lzdown = $dzdown;
 
-            $obj = new SvObject();
+            $obj = new DXKObject();
             $obj->setType($this->getRandStone());
             $obj->setXyz($positionCenterX+$dx,$positionCenterY,$positionCenterZ+$dz);
             $obj->setRotate(270, $ugol,0); // rand(0,360)
@@ -85,13 +85,13 @@ class River extends AbstractLocation
 
             $obj = clone $obj;
             $obj->setXyz($positionCenterX+$dx,$positionCenterY,$positionCenterZ+$dz-5);
-            $obj->setType(SvTypes::GRASS1);
+            $obj->setType(DXKTypes::GRASS1);
             $obj->setWidth(2,2,7);
             $obj->setRotate(270, 0,0); // rand(0,360)
             $this->objects[] = $obj;
             $width = 50;
 
-            $obj = new SvObject();
+            $obj = new DXKObject();
             $obj->setType($this->getRandStone());
             $obj->setXyz($positionCenterX+$dx,$positionCenterY,$positionCenterZ+$dzdown-$width);
             $obj->setRotate(270, $ugoldown,0); // rand(0,360)
@@ -100,14 +100,14 @@ class River extends AbstractLocation
 
             $obj = clone $obj;
             $obj->setXyz($positionCenterX+$dx,$positionCenterY,$positionCenterZ+$dzdown-$width+5);
-            $obj->setType(SvTypes::GRASS1);
+            $obj->setType(DXKTypes::GRASS1);
             $obj->setWidth(2,2,7);
             $obj->setRotate(270, 0,0); // rand(0,360)
             $this->objects[] = $obj;
 
-            $obj = new SvObject();
-            $obj->setMaterial(SvMaterials::WATER);
-            $obj->setType(SvTypes::BOX);
+            $obj = new DXKObject();
+            $obj->setMaterial(DXKMaterials::WATER);
+            $obj->setType(DXKTypes::BOX);
             $obj->setXyz($positionCenterX+$dx,$positionCenterY,$positionCenterZ+$dzdown-$width);
             $obj->setRotate(0, 1,0); // rand(0,360)
             $obj->setWidth(1.2,1,$width+$dz-$dzdown);
@@ -115,7 +115,7 @@ class River extends AbstractLocation
 
             $obj = clone $obj;
             $obj->setXyz($positionCenterX+$dx,$positionCenterY-0.1,$positionCenterZ+$dzdown-$width);
-            $obj->setMaterial(SvMaterials::SAND);
+            $obj->setMaterial(DXKMaterials::SAND);
             $obj->setWidth(1.2,0.1,$width+$dz-$dzdown);
             $this->objects[] = $obj;
         }

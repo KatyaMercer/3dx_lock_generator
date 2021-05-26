@@ -1,8 +1,8 @@
 <?php
 namespace companies\KatyaMercer;
-use \KatyaMercer\SvMaterials;
-use \KatyaMercer\SvObject;
-use \KatyaMercer\SvTypes;
+use \KatyaMercer\DXKMaterials;
+use \KatyaMercer\DXKObject;
+use \KatyaMercer\DXKTypes;
 
 /**
  *
@@ -14,10 +14,10 @@ class LineMountain extends AbstractLocation{
     public function generate($fromXYZ, $toXYZ)
     {
         $mounts = [
-            SvTypes::TERRAIN_GRASS,
-//            SvTypes::TERRAIN_DIRT,
-//            SvTypes::TERRAIN_SAND,
-//            SvTypes::TERRAIN_SNOW,
+            DXKTypes::TERRAIN_GRASS,
+//            DXKTypes::TERRAIN_DIRT,
+//            DXKTypes::TERRAIN_SAND,
+//            DXKTypes::TERRAIN_SNOW,
         ];
         $deltaX = (-$fromXYZ['x'] + $toXYZ['x'])/$this->size;
         $deltaY = (-$fromXYZ['y'] + $toXYZ['y'])/$this->size;
@@ -31,7 +31,7 @@ class LineMountain extends AbstractLocation{
             $y += $deltaY;
             $z += $deltaZ;
 
-            $object = new SvObject();
+            $object = new DXKObject();
             $object->setXyz($x, $y, $z);
             $object->setWidth(rand(1,2), rand(1,2), rand(20,30)/10);
             $object->setRotate(270,0,0);

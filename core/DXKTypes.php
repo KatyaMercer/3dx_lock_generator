@@ -5,10 +5,10 @@ namespace KatyaMercer;
  * Константы всех доступных примитивов
  * Constants of primitives
  *
- * Class SvTypes
+ * Class DXKTypes
  * @package KatyaMercer
  */
-class SvTypes
+class DXKTypes
 {
     // beds кровати
     const BED1 = 'bed_1';

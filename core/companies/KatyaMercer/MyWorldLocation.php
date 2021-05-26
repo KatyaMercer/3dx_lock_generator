@@ -2,11 +2,11 @@
 
 namespace companies\KatyaMercer;
 
-use KatyaMercer\SvMaterials;
-use KatyaMercer\SvObject;
-use KatyaMercer\SvScene;
-use KatyaMercer\SvTypes;
-use KatyaMercer\SvWeathers;
+use KatyaMercer\DXKMaterials;
+use KatyaMercer\DXKObject;
+use KatyaMercer\DXKScene;
+use KatyaMercer\DXKTypes;
+use KatyaMercer\DXKWeathers;
 
 /**
  * runner companies\KatyaMercer\MyWorldLocation
@@ -17,7 +17,7 @@ class MyWorldLocation
 {
     public function run()
     {
-        $scene = new SvScene();
+        $scene = new DXKScene();
         $dr = new \companies\KatyaMercer\DefRespawn();
         $dr->setPos(0,-0.2,-100);
         $dr->setSize((150));
@@ -66,7 +66,7 @@ class MyWorldLocation
         $rw = new RitaWorld();
         $rw->setPos(0,0,-200);
         $rw->setSize(130);
-        $rw->generate();
+        $rw->generate(true, 40,41,true);
         $rw->generPlatform();
         $rw->drawOnScene($scene, true);
 
@@ -92,22 +92,22 @@ class MyWorldLocation
         $river->generate();
         $river->drawOnScene($scene);
 
-        $scene->setWeather(SvWeathers::NIGHT);
+        $scene->setWeather(DXKWeathers::NIGHT);
         $scene->setAmbient(1,1,1,5,1);
 
         //spawn
         $scene->setRespawn(-80,3.2,-10);
-        $object = new SvObject();
-        $object->setType(SvTypes::ELECTRICITY);
+        $object = new DXKObject();
+        $object->setType(DXKTypes::ELECTRICITY);
         $object->setRotate(270,270,0);
         $object->setXyz(-80, 4,-10);
         $object->setWidth(3, 3, 3);
         $scene->addObject($object);
 
-        $object = new SvObject();
-        $object->setType(SvTypes::CYLINDER);
+        $object = new DXKObject();
+        $object->setType(DXKTypes::CYLINDER);
         $object->setColor(5,0,0);
-        $object->setMaterial(SvMaterials::FOLIAGE_3);
+        $object->setMaterial(DXKMaterials::FOLIAGE_3);
         $object->setRotate(270,90,0);
         $object->setXyz(-80, 1,-10);
         $object->setWidth(4, 4, 2.2);
@@ -120,11 +120,12 @@ class MyWorldLocation
         $zamok->setPos(-90,-50,3);
         $zamok->mainRoomBox();
         $zamok->sotona();
-        $zamok->setShine([
-            'r' => 0.8,
-            'g' => 0.5,
-            'b' => 0.5
-        ]);
+//        $zamok->setShine([
+//            'r' => 0.8,
+//            'g' => 0.5,
+//            'b' => 0.5
+//        ]);
+        $zamok->setShine(null);
         $zamok->subRoomRitaAndKatya();
         $zamok->kovri();
         $zamok->drawOnScene($scene);

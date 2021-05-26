@@ -1,9 +1,9 @@
 <?php
 namespace companies\KatyaMercer;
-use KatyaMercer\SvMaterials;
-use KatyaMercer\SvObject;
-use KatyaMercer\SvScene;
-use KatyaMercer\SvTypes;
+use KatyaMercer\DXKMaterials;
+use KatyaMercer\DXKObject;
+use KatyaMercer\DXKScene;
+use KatyaMercer\DXKTypes;
 
 /**
  * runner companies\KatyaMercer\KMG
@@ -160,12 +160,12 @@ class KMG extends AbstractLocation
 //        }
     }
 
-    public function draw3dx($matrix, SvScene $scene)
+    public function draw3dx($matrix, DXKScene $scene)
     {
         foreach ($matrix as $i => $submatrix) {
             foreach ($submatrix as $j => $element) {
-                $obj = new SvObject();
-                $obj->setType(SvTypes::BOX);
+                $obj = new DXKObject();
+                $obj->setType(DXKTypes::BOX);
                 $obj->setWidth(5,0.2,5);
                 $obj->setXyz($i*5, 0.2, $j*5);
                 switch ($element['color']) {
@@ -184,8 +184,8 @@ class KMG extends AbstractLocation
                 }
                 $scene->addObject($obj);
                 if (in_array($element['object'], ['redCube', 'greenCube', 'blueCube', 'whiteCube'])) {
-                    $obj = new SvObject();
-                    $obj->setType(SvTypes::SPHERE);
+                    $obj = new DXKObject();
+                    $obj->setType(DXKTypes::SPHERE);
                     $obj->setWidth(1,1,1);
                     $obj->setXyz($i*5, 0.5, $j*5+2.5);
                     switch ($element['object']) {
@@ -204,7 +204,7 @@ class KMG extends AbstractLocation
                     }
                     $scene->addObject($obj);
                 } else {
-                    $obj = new SvObject();
+                    $obj = new DXKObject();
                     $obj->setType($element['object']);
                     $obj->setWidth(1,1,1);
                     $obj->setXyz($i*5, $element['object'] == 'Chopper'? 0.5: 0.2, $j*5+2.5);
@@ -217,12 +217,12 @@ class KMG extends AbstractLocation
 
     public function run()
     {
-        $scene = new \KatyaMercer\SvScene();
+        $scene = new \KatyaMercer\DXKScene();
 
         $dr=  new DefRespawn();
         $dr->setPos(0,0,-100);
         $dr->setSize(1000);
-        $dr->generate(SvMaterials::SAND);
+        $dr->generate(DXKMaterials::SAND);
         $dr->drawOnScene($scene);
         $n = new KMG();
         $start = $n->generateKvadr();
